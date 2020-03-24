@@ -67,9 +67,9 @@ Declarations_Within_Blocks#Function_Declarations_Within_Blocks
 3. Next navigate to your local server folder in your terminal/cmd using `cd [serverfoldername]/www`
 4. Clone this project into your www folder of your local server by using `git clone -b master-dev https://github.com/NathanRomanos/SanRaw.git` in your terminal/cmd
 5. Set up the front end nodejs in your terminal/cmd by typing:
-   i. `cd front-end`
-   ii. `npm i`
-   iii. `grunt`
+   1. `cd front-end`
+   2. `npm i`
+   3. `grunt`
 6. In a second terminal/cmd window navigate to this project's back-end folder and type in this code to install nodejs and start the server:
    1. `npm i`
    2. `nodemon -L index.js`
@@ -77,9 +77,9 @@ Declarations_Within_Blocks#Function_Declarations_Within_Blocks
 8. In both the front-end folder and back-end folder you will find files called **config-template.json**
 9. Duplicate both of these folders and rename them **config.json**
 10. Inside the back-end config.json file, insert the following information:
-   i. ~~mongo username~~
-   ii. ~~mongo password~~
-   iii. ~~mongo clustername~~
+   1. mongo username
+   2. mongo password
+   3. mongo clustername
 11. Indside the front-end config.json file, insert the following information:
-    i. ~~server url~~
-    ii. 3000
+   1. server url
+   2. 3000

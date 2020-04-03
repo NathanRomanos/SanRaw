@@ -3,7 +3,6 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-
     uglify: {
       build: {
         src: 'index.js',
@@ -16,10 +15,9 @@ module.exports = function(grunt) {
         esversion : 6
       }
     },
-
     watch: {
     scripts: {
-      files: ['Gruntfile.js','js/script.js'],
+      files: ['Gruntfile.js','index.js'],
       tasks: ['jshint'],
       options: {
         spawn: false,
@@ -29,11 +27,11 @@ module.exports = function(grunt) {
   });
 
   // Load the plugin that provides the "uglify" task.
-  grunt.loadNpmTasks('grunt-contrib-uglify');
+  // grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task(s).
-  grunt.registerTask('default', ['watch'], ['jshint']);
-
+  grunt.registerTask('default', ['watch']);
+  grunt.registerTask('ugly', ['uglify']);
 };

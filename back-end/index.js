@@ -82,14 +82,14 @@ app.delete('/deleteUser/:id', (req,res)=>{ //create request to delete a user
           if (userResult2){
             User.deleteOne({_id:idParam},err=>{ //delete match
               res.send('deleted user'); //confirm message
-            }); // end inner find one
+            }); // end delete one
           } else {
-            res.send('wrong user');
+            res.send('Wrong user');
           } // end else
-      }); // end 2nd findone
+      }); // end inner findone
 
     } else { //if not found do this
-      res.send('not found') //no match message
+      res.send('User not found') //no match message
     } // end else
   }).catch(err => res.send(err)); // end outer findone
 }); // end delete user
@@ -123,25 +123,69 @@ app.get('/displayAllUsers', (req,res)=>{ //create request to show all products w
 
 
 //Display User by id
-app.get('/displayUser/p=:id', (req,res)=>{ //create request to search user by id
-  const idParam = req.param.id; //set new reference idParam from last forward slash in request
-  for (let i = 0; i < user.length; i++){ // run loop through db
-    if (idParam.toString() === user[i]._id.toString()) { //if match is found do this
-    res.json(user[i]); //print found project
-    } // end if statement
-  } // end for loop
+app.get('/displayUser/:id', (req,res)=>{ //create request to search user by id
+  const idParam = req.params.id; //set new reference idParam from last forward slash in request
+  const user = req.params.userId;
+    User.findOne({_id:idParam},(err, userResult)=>{ //search Product db for id
+    if (userResult) { //do this if present
+      User.findOne({userId:user},(err,userResult2)=>{
+          if (userResult2){
+            res.send(userResult); //print result
+          } else {
+            res.send('Wrong user');
+          } // end else
+      }); // end 2nd findone
+
+    } else { //if not found do this
+      res.send('User not found') //no match message
+    } // end else
+  }).catch(err => res.send(err)); // end outer findone
 }); // end display user by id
 
-//Update User
 
+//Update User
+app.patch('/updateUser/:id',(req,res)=> {
+  const idParam = req.params.id;
+  User.findById(idParam,(err)=> {
+    const hash = bcryptjs.hashSync(req.body.password); //hash the password
+    const updatedUser = {
+      username : req.body.username,
+      firstName : req.body.firstName,
+      lastName : req.body.lastName,
+      email : req.body.email,
+      password : hash,
+      userDesc : req.body.userDesc,
+      profileImg : req.body.profileImg
+
+    };
+    User.updateOne({_id:idParam}, updatedUser).then(result => {
+      res.send(result);
+    }).catch(err => res.send(err));
+  }).catch(err => res.send('not found'));
+});
 
 //-------------------------------End User Section-------------------------------//
 
 
 
-
-
 //-------------------------------Start Product Section-------------------------------//
+
+//Add Product
+
+
+//Delete Product
+
+
+//Update Product
+
+
+//View All Products
+
+
+//View Single Product
+
+
+//View Product By User
 
 
 

@@ -13,4 +13,4 @@ profileImg : String
 });
 
 module.exports = mongoose.model('User', userSchema);
-//Nathan's code ends
+// end Nathan's code

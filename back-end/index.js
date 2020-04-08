@@ -73,25 +73,17 @@ app.post('/signUpUser', (req,res)=>{ // this is for create
 
 
 //Delete User
-app.delete('/deleteUser/:id', (req,res)=>{ //create request to delete a user
-  const idParam = req.params.id; //set new reference idParam from last forward slash in request
-  const user = req.params.userId;
-    User.findOne({_id:idParam},(err, userResult)=>{ //search Product db for id
-    if (userResult) { //do this if present
-      User.findOne({userId:user},(err,userResult2)=>{
-          if (userResult2){
-            User.deleteOne({_id:idParam},err=>{ //delete match
-              res.send('deleted user'); //confirm message
-            }); // end delete one
-          } else {
-            res.send('Wrong user');
-          } // end else
-      }); // end inner findone
-
-    } else { //if not found do this
-      res.send('User not found') //no match message
-    } // end else
-  }).catch(err => res.send(err)); // end outer findone
+app.delete('/deleteUser/:id',(req,res) => {
+  const idParam = req.params.id;
+  User.findOne({_id:idParam}, (err, user) => { //_id refers to mongodb
+    if (user) {
+      User.deleteOne({_id:idParam}, err => {
+        res.send('Deleted user');
+      }); // end delete one
+    } else {
+      res.send('User not found');
+    } // end else statement
+  }).catch(err => res.send(err)); // end find one
 }); // end delete user
 
 
@@ -124,22 +116,14 @@ app.get('/displayAllUsers', (req,res)=>{ //create request to show all products w
 
 //Display User by id
 app.get('/displayUser/:id', (req,res)=>{ //create request to search user by id
-  const idParam = req.params.id; //set new reference idParam from last forward slash in request
-  const user = req.params.userId;
-    User.findOne({_id:idParam},(err, userResult)=>{ //search Product db for id
-    if (userResult) { //do this if present
-      User.findOne({userId:user},(err,userResult2)=>{
-          if (userResult2){
-            res.send(userResult); //print result
-          } else {
-            res.send('Wrong user');
-          } // end else
-      }); // end 2nd findone
-
-    } else { //if not found do this
-      res.send('User not found') //no match message
-    } // end else
-  }).catch(err => res.send(err)); // end outer findone
+  const idParam = req.params.id;
+  User.findOne({_id:idParam}, (err, user) => { //_id refers to mongodb
+    if (user) {
+      res.send(user);
+    } else {
+      res.send('User not found');
+    } // end else statement
+  }).catch(err => res.send(err)); // end find one
 }); // end display user by id
 
 
@@ -157,49 +141,175 @@ app.patch('/updateUser/:id',(req,res)=> {
       userDesc : req.body.userDesc,
       profileImg : req.body.profileImg
 
-    };
+    }; // end updated user const
     User.updateOne({_id:idParam}, updatedUser).then(result => {
       res.send(result);
-    }).catch(err => res.send(err));
-  }).catch(err => res.send('not found'));
-});
+    }).catch(err => res.send(err)); // end update one
+  }).catch(err => res.send('User not found')); // end find by id
+}); // end update user
 
 //-------------------------------End User Section-------------------------------//
-
 
 
 //-------------------------------Start Product Section-------------------------------//
 
 //Add Product
+app.post('/addProduct', (req,res)=> {
+ // checking if product is found in the db already
+  Product.findOne({name:req.body.productName},(err, productResult)=> {
+    if (productResult){
+      res.send('Product is already in database. Please try again!');
+    } else {
+      const addProduct = new Product({
+        _id : new mongoose.Types.ObjectId,
+        productName : req.body.productName,
+        productDesc : req.body.productDesc,
+        productType : req.body.productType,
+        productImg1 : req.body.productImg1,
+        productImg2 : req.body.productImg2,
+        productImg3 : req.body.productImg3,
+        productPrice : req.body.productPrice,
+        user_id : req.body.user_id
+      }); // end add product const
+      //save to database and notify the user accordingly
+      addProduct.save().then(result => {
+        res.send(result);
+      }).catch(err => res.send(err));
+    } // end else statement
+  }) // end find one
+}); // end add product
 
 
 //Delete Product
+app.delete('/deleteProduct/:id',(req,res) => {
+  const idParam = req.params.id;
+  Product.findOne({_id:idParam}, (err, product) => { //_id refers to mongodb
+    if (product) {
+      Product.deleteOne({_id:idParam}, err => {
+        res.send('Deleted product');
+      }); // end delete one
+    } else {
+      res.send('Product not found');
+    } // end else statement
+  }).catch(err => res.send(err)); // end find one
+}); // end delete product
 
 
 //Update Product
+app.patch('/updateProduct/:id',(req,res)=> {
+  const idParam = req.params.id;
+  Product.findById(idParam,(err)=> {
+    const updatedProduct = {
+      productName : req.body.productName,
+      productDesc : req.body.productDesc,
+      productType : req.body.productType,
+      productImg1 : req.body.productImg1,
+      productImg2 : req.body.productImg2,
+      productImg3 : req.body.productImg3,
+      productPrice : req.body.productPrice
+    };
+    Product.updateOne({_id:idParam}, updatedProduct).then(result => {
+      res.send(result);
+    }).catch(err => res.send(err));
+  }).catch(err => res.send('Product not found')); // end find by id
+}); // end update product
 
 
-//View All Products
+//Display All Products
+app.get('/displayAllProducts', (req, res)=> {
+  Product.find().then(result => {
+    res.send(result);
+  }); // end product.find()
+}); // end display all products
 
 
-//View Single Product
+//Display Single Product
+app.get('/displaySingleProduct/:id', (req,res)=>{
+  const idParam = req.params.id;
+  Product.find({_id:idParam}, (err, product) => {
+    if (product) {
+      res.send(product);
+    } else {
+      res.send('Product not found');
+    } // end else statement
+  }).catch(err => res.send(err)); // end find one
+}); // end display single product
 
 
-//View Product By User
-
+//Display Products By User
+app.get('/displayUserProducts/:id', (req,res)=>{
+  const idParam = req.params.id;
+  Product.find({user_id:idParam}, (err, product) => {
+    if (product) {
+      res.send(product);
+    } else {
+      res.send('User not found');
+    } // end else statement
+  }).catch(err => res.send(err)); // end find one
+}); // end display products by user
 
 
 //-------------------------------End Product Section-------------------------------//
 
 
-
-
-
 //-------------------------------Start Comment Section-------------------------------//
 
+//Add Comment
+app.post('/addComment', (req,res)=> {
+  const addComment = new Comment({
+    _id : new mongoose.Types.ObjectId,
+    commentText : req.body.commentText,
+    commentUsername : req.body.commentUsername,
+    commentProfileImg : req.body.commentProfileImg,
+    seller : req.body.seller,
+    user_id : req.body.user_id,
+    product_id : req.body.product_id
+  }); // end add comment const
+      //save to database and notify the user accordingly
+  addComment.save().then(result => {
+    res.send(result);
+  }).catch(err => res.send(err));
+}); // end add comment
+
+
+//Delete Comment
+app.delete('/deleteComment/:id',(req,res) => {
+  const idParam = req.params.id;
+  Comment.findOne({_id:idParam}, (err, comment) => { //_id refers to mongodb
+    if (comment) {
+      Comment.deleteOne({_id:idParam}, err => {
+        res.send('Deleted comment');
+      }); // end delete one
+    } else {
+      res.send('Comment not found');
+    } // end else statement
+  }).catch(err => res.send(err)); // end find one
+}); // end delete comments
+
+
+//Display All Comments
+app.get('/displayAllComments', (req, res)=> {
+  Comment.find().then(result => {
+    res.send(result);
+  }); // end product.find()
+}); // end view all comments
+
+
+//Display Comments by Product
+app.get('/displayProductComments/:id', (req,res)=>{
+  const idParam = req.params.id;
+  Comment.find({product_id:idParam}, (err, comment) => {
+    if (comment) {
+      res.send(comment);
+    } else {
+      res.send('Product not found');
+    } // end else statement
+  }).catch(err => res.send(err)); // end find one
+}); // end display product comments
 
 
 //-------------------------------End Comment Section-------------------------------//
+
 
 // leave right at bottom
 app.listen(port, () => console.log(`App listening on port ${port}!`))

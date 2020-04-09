@@ -1,24 +1,56 @@
-<!DOCTYPE html>
 <html lang="en">
-
 	<head>
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    	<!-- <link rel="stylesheet" href="css/style.css"> -->
-
+		<!-- <link rel="stylesheet" href="node_modules/dist/css/bootstrap.min.css"> -->
+    	<link rel="stylesheet" href="css/style.css">
 		<title>Plant Market</title>
-
 	</head>
 
+	<body>
 
-	<body class="container">
-		<h1 class="jumbotron">Plant Market</h1>
+	<div class="page row page-style">
+		
+		<!-- Nav Bar starts --> 
+		<div id="navContainer" class="navbar">
+			<button id="profileButton" class="btn btn-lg btn-primary"> User </button>
+			<h1> Plant Market </h1>
 
+			<!-- login and register container -->
+				<div>
+					<div>
+						<button id="registerNewUserBtn" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#registerNewUserModal">Register</button>
+					</div>
+					<div">
+						<button id="loginUserBtn" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#loginUserModal">Login</button>
+					</div>
+				</div>
+			<!-- Login and register container ends -->
 
+			<!-- Add project button -->
+				<div>
+					<div id="addProjectBtnContainer" class="col-12">
+					</div>
+				</div>
+
+			<!-- Logout button container -->
+				<div>
+					<div id="logoutUserBtnContainer" class="col-12">
+					</div>
+				</div>
+		</div>
+
+		<!-- Nav Bar Ends --> 
+		<div> </div>
+
+		<!-- Banner Image  --> 
+		<div class="bannerImage">
+			<img src="">
+		</div>
+
+	</div>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -26,7 +58,6 @@
   	<script src="popper/popper.min.js"> </script>
   	<script src="bootstrap/js/bootstrap.min.js"> </script>
     <!-- <script src="js/script.js"></script> -->
-
 	</body>
 
 </html>

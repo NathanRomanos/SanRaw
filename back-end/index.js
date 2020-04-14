@@ -169,6 +169,8 @@ app.post('/addProduct', (req,res)=> {
         productImg2 : req.body.productImg2,
         productImg3 : req.body.productImg3,
         productPrice : req.body.productPrice,
+        productUsername : req.body.productUsername,
+        productProfileImg : req.body.productProfileImg,
         user_id : req.body.user_id
       }); // end add product const
       //save to database and notify the user accordingly

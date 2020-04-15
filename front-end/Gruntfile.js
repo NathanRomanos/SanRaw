@@ -45,7 +45,7 @@ module.exports = function(grunt) {
     watch: {
     scripts: {
       files: ['Gruntfile.js','js/script.js','sass/*.scss'],
-      tasks: ['sass','jshint','csslint'],
+      tasks: ['jshint','csslint'],
       options: {
         spawn: false,
         },
@@ -61,6 +61,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task(s).
-  grunt.registerTask('default', ['watch'], ['sass'], ['csslint'], ['jshint']);
+  grunt.registerTask('default', ['watch']);
+  grunt.registerTask('ugly', ['uglify']);
 
 };

@@ -3,9 +3,9 @@
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    	<link rel="stylesheet" href="css/style.css">
+		<link href="https://fonts.googleapis.com/css?family=Lora|Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 		<title>Plant Market</title>
 	</head>
 
@@ -14,13 +14,13 @@
 	<div>
 
 	<div class="headingContainer">
-		
-		<!-- Nav Bar starts --> 
+
+		<!-- Nav Bar starts -->
 		<div id="navContainer" class="navbar row">
 			<div class="col-3"><a class="btn" href="user.html" id="profileButton">User</a></div>
 			<div class="col-6"><h1> Plant Market </h1></div>
 
-			<!-- login and register container -->
+			<!-- login, logout and register container -->
 				<div class="btnNavContainer col-3">
 					<div class="btnContainer">
 						<button id="registerNewUserBtn" class="btn btnNav" data-toggle="modal" data-target=".register-modal">Register</button>
@@ -28,17 +28,13 @@
 					<div class="btnContainer">
 						<button id="loginUserBtn" class="btn btnNav" data-toggle="modal" data-target=".login-modal">Login</button>
 					</div>
-				</div>
-			<!-- Login and register container ends -->
-
-
-			<!-- Logout button container -->
-				<div>
-					<div id="logoutUserBtnContainer" class="col-12">
+					<div class="btnContainer">
+						<button id="logoutUserBtn" class="btn btnNav" data-target=".register-modal">Log Out</button>
 					</div>
 				</div>
+			<!-- Login, logout and register container ends -->
 		</div>
-		<!-- Nav Bar Ends --> 
+		<!-- Nav Bar Ends -->
 
 		<!-- Register Modal -->
 
@@ -89,9 +85,9 @@
 		</div>
 
 
-		<!-- Log In Modal --> 
+		<!-- Log In Modal -->
 
-				<div class="modal fade bd-example-modal-lg login-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+				<div id="loginModal" class="modal fade bd-example-modal-lg login-modal" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 				  <div class="modal-dialog modal-lg">
 				  	<div class="modal-content">
 				      <div class="modal-header">
@@ -106,26 +102,26 @@
 				        <form>
 						  <div class="row">
 						  	<div class="col">
-						  		<input type="text" class="form-control" placeholder="Username">
+						  		<input id="loginUsername" type="text" class="form-control" placeholder="Username" value="">
 						  	</div>
 						  </div>
 						  <div class="row">
 						  	<div class="col">
-						  		<input type="text" class="form-control" placeholder="Password">
+						  		<input id="loginPassword" type="text" class="form-control" placeholder="Password" value="">
 						  	</div>
 						  </div>
 						</form>
 
 				      </div>
-				      <div class="modal-footer">
-				        <button type="button" class="btn cardBtn">Save changes</button>
+				      <div id="loginSubmitDiv" class="modal-footer">
+				        <button id="loginSubmit" type="button" data-dismiss="modal" class="btn cardBtn">Submit</button>
 				      </div>
 				    </div>
 				  </div>
 				</div>
 
 
-		<!-- Banner Image  --> 
+		<!-- Banner Image  -->
 		<div class="bannerImgContainer">
 			<img class="bannerImg" src="img/bannerImg.jpg"alt="Banner Image">
 		</div>
@@ -134,7 +130,21 @@
 
 	<div class="container">
 
-		<h1> Listings </h1>
+			<h1 class="pageHeading"> Listings </h1>
+
+		<!-- Product Card -->
+
+		<div class="dropdown">
+				  <button class="btn btnDropdown dropdown-toggle" type="button" id="categoriesMenuBtn">
+				    Categories
+				  </button>
+				  <div id="categoriesMenu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				    <a class="dropdown-item" href="#">Monstera</a>
+				    <a class="dropdown-item" href="#">Pothos</a>
+				    <a class="dropdown-item" href="#">Philodendron</a>
+				    <a class="dropdown-item" href="#">Peperomia</a>
+				  </div>
+				</div>
 
 		<div class="row cardContainer">
 			<div class="card" style="width: 18rem;">
@@ -200,22 +210,23 @@
 						</div>
 					</div>
 
-					
+
 
 		      </div>
 		    </div>
 		  </div>
 		</div>
 
-	</div> 
+	</div>
 
 	</div>
 
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="node_modules/jquery/dist/jquery.min.js"></script>
-  	<script src="node_modules/@popperjs/core/dist/umd/popper.min.js"> </script>
-  	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"> </script>
+	  <!-- Optional JavaScript -->
+  	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+	  <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+	  <script type="text/javascript" src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+	  <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>	
     <script src="js/script.js"></script>
 	</body>
 

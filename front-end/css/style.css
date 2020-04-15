@@ -1,0 +1,142 @@
+body {
+	font-family: 'Quicksand', sans-serif;
+	height:100%;
+}
+
+h1, h2, h3, h4, h5,.btn {
+	font-family: 'Lora', serif;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+h1 {
+	font-size: 22pt;
+	/*margin: 20px 0 20px 0;*/
+	text-align: center;
+}
+
+.headingContainer {
+	overflow: hidden;
+	max-height: 75vh;
+}
+
+.btnNav {
+	display: inline-block;
+}
+
+.btnContainer {
+	display: inline-block;
+}
+
+.bannerImg, .bgImg {
+	max-width: 100%;
+	height: auto;
+}
+
+.card-title {
+	text-align: center;
+}
+
+.card-text {
+	text-align: center;
+}
+
+.btn {
+	font-size: 12px;
+}
+
+.cardBtn {
+	display: block;
+	margin: auto;
+	width: 50%;
+	color: #ffffff;
+	background-color: #4B5940;
+}
+
+.productModalHeader {
+	padding: 10px 10px 0 10px;
+	border: 0px;
+}
+
+.productModalBody {
+	padding: 0 10px 10px 10px;
+}
+
+.bgImgContainer {
+	width: auto:
+	height 100vh;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.userContainer {
+	position: absolute;
+	z-index: 1;
+	width: 80%;
+	margin: 0px 10% 20px 10%;
+}
+
+.userImg {
+	border-radius: 50%;
+	border: 5px solid #ffffff;
+	height: 150px;
+	width: 150px;
+	margin: 15px 10px 0 42.5%;
+}
+
+.editBtn {
+	margin: auto;
+	width: 15%;
+	color: #4B5940;
+	background-color: #ffffff;
+	float: right;
+	margin-top: 70px;
+}
+
+.userInfoContainer {
+	background-color: #ffffff;
+	border-radius: 10px;
+	margin: -55px 0 0 0;
+	padding: 60px 10px 20px 10px;
+}
+
+.userInfoLabel {
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 10pt;
+	line-height: 25px;
+	color: #666666;
+	margin-right: 10px;
+}
+
+.userInfoInput {
+	display: inline-block;
+	font-size: 10pt;
+	line-height: 25px;
+	color: #666666;
+	margin-right: 10px;
+	margin-bottom: .5rem;
+}
+
+.modal-header, .modal-body {
+	border-bottom: 0px;
+	padding-bottom: 0px;
+}
+
+.modal-body {
+	padding-top: 0px;
+}
+
+.modal-footer{
+	border-top: 0px;
+	padding: 10px 0 25px 0;
+}
+
+form {
+	margin-top: 25px;
+}
+
+.form-control {
+	margin-bottom: 20px;
+}

@@ -331,6 +331,52 @@ $('#profileButton').click(function(){
 						</div>
 					</div>
 				</form>`
+
+
+				// VIEW PRODUCTS ON USER PAGE (Shay)
+
+				function userProducts(){
+
+					let userID = sessionStorage['user-id'];
+
+					$.ajax({
+					url :`${url}/displayUserProducts/${userID}`, //from Mongo db
+					type :'GET',
+					dataType:'json',
+						success : function(viewData){
+						  console.log(viewData);
+
+						  document.getElementById('userProducts').innerHTML = "";
+							  for(let i=0; i < viewData.length; i++){
+							  	// console.log(viewData[i].user-id);
+							    document.getElementById('userProducts').innerHTML +=
+								`<div class="card col-4">
+								  <div class="image-div">
+									  <img src="${viewData[i].productImg1}" class="card-img-top card-thumbnail" alt="Card Thumbnail">
+									</div>
+								  <div class="card-body">
+								    <h5 class="card-title">${viewData[i].productName}</h5>
+								    <p class="card-text">$${viewData[i].productPrice}.00</p>
+								    <button type="button" class="btn cardBtn" data-toggle="modal" data-target=".product-modal">View More</button>
+								    <div class="secondaryCardDiv">
+									    <button type="button" class="btn secondaryCardBtn" data-toggle="modal" data-target=".edit-product-modal" id="editProductBtn" >Edit</button>
+									    <button type="button" class="btn secondaryCardBtn" data-toggle="modal" data-target=".product-delete-confirmation-modal" id="deleteProduct" >Delete</button>
+								  	</div>
+								  </div>
+								</div>`;
+							  }
+						}, //success
+						
+						error:function(error){
+						  console.log('error: product cards cannot be called');
+						}// end error message
+					}); // end ajax
+				}; // end userProducts function 
+				userProducts();
+
+
+
+
     },// end success function
     error:function(){
       console.log('error: cannot call api');
@@ -533,6 +579,7 @@ function displayModal(data){
         }
         displayComments();
 
+      
       }, // end product data success function
         error : function(){
           console.log('Cannot call API to display the product modal');
@@ -555,64 +602,128 @@ $('#cardContainer').on('click', '.cardBtn', function(){
 
     let productName = $('#addProductFormName').val();
     let productDesc = $('#addProductFormDescription').val();
-	let productType = $('#addProductFormType').val();
-	let productImg1 = $('#addProductFormImg1').val();
-	let productImg2 = $('#addProductFormImg2').val();
-	let productImg3 = $('#addProductFormImg3').val();
-	let productPrice = $('#addProductFormPrice').val();
+	  let productType = $('#addProductFormType').val();
+	  let productImg1 = $('#addProductFormImg1').val();
+	  let productImg2 = $('#addProductFormImg2').val();
+	  let productImg3 = $('#addProductFormImg3').val();
+	  let productPrice = $('#addProductFormPrice').val();
     let user_id = sessionStorage.getItem('user-id');
 
-    console.log(productName, productDesc, productType, productImg1, productImg2, productImg3, productPrice);
+    $.ajax({
+    	url : `${url}/addProduct`,
+    	type : 'POST',
+    	data : {
+	    	productName : name,
+	        productDesc : desc,
+	        productType : type,
+	        productImg1 : img1,
+	        productImg2 : img2,
+	        productImg3 : img3,
+	        productPrice : price,
+	        user_id : user_id
+    	},
+    	success : function(){
+    		showAllProducts(); // need showALlProducts function to display user product cards
+    	}, 
+    	error : function(){
+    		console.log('error: cannot call api');
+    	}
+    });
+});
 
-    // check to see that all necessary fields have been entered
-    if (productName == '' || productDesc == '' || productType == '' || productImg1 == '' || productImg2 == '' || productImg3 == '' ||  productPrice == ''){
-		alert('Please enter all details');
-	} else {
+ // UPDATE PRODUCT (Shay)
 
-      $.ajax({
-        url :`${url}/addProduct`,
-        type : 'POST',
-        data : {
-          productName : productName,
-          productDesc : productDesc,
-          productType : productType,
-          productImg1 : productImg1,
-          productImg2 : productImg2,
-          productImg3 : productImg3,
-          productPrice : productPrice,
-          user_id : user_id
-        },
+ 	$('#editProductForm').submit(function(){
+ 		event.preventDefault();
+ 		let productId = $('#productId').val();
+ 		let productName = $('#addProductFormName').val();
+	    let productDesc = $('#addProductFormDescription').val();
+		let productType = $('#addProductFormType').val();
+		let productImg1 = $('#addProductFormImg1').val();
+		let productImg2 = $('#addProductFormImg2').val();
+		let productImg3 = $('#addProductFormImg3').val();
+		let productPrice = $('#addProductFormPrice').val();
+	    let  userId = $('#userId').val();
 
-        success : function(product){
-        	console.log(product);
-           if (!(product == 'name taken already. Please try another one')) {
-		      alert('added the product');
-		      } else {
-		        alert('name taken already. Please try another one');
-      		  }
-
-		   	$('#addProductFormName').val();
-		    $('#addProductFormDescription').val();
-			$('#addProductFormType').val();
-			$('#addProductFormImg1').val();
-			$('#addProductFormImg2').val();
-			$('#addProductFormImg3').val();
-			$('#addProductFormPrice').val();
-			$('#addProductuser_id').val();
-		    $('#addProductFormUserId').val();
-
-			 }, //success
-			 error:function(){
-			 	console.log('error: cannot call api');
-			 } // error
-		}); // ajax
-  	}; //else
-}); // end of add portfolio function
-
- // UPDATE PRODUCT
+	    console.log(productName, productDesc, productType, productImg1, productImg2, productImg3, productPrice);
+	     $.ajax({
+	    			url : `${url}/updateProduct/${productId}`,
+	    			type : 'PATCH',
+	    			data : {
+	    				productName : name,
+				        productDesc : desc,
+				        productType : type,
+				        productImg1 : img1,
+				        productImg2 : img2,
+				        productImg3 : img3,
+				        productPrice : price,
+				        user_id : sessionStorage['user-id']
+	    			}, 
+	    			success : function(data){
+	    				console.log(data);
+	    				if (data == '401 error; user has no permission to update') {
+	    					alert ('401 error; user has no permission to update');
+			            } else{
+			              alert('modified');
+				    	}
+				    	$('#productId').val();
+				 		$('#addProductFormName').val();
+					    $('#addProductFormDescription').val();
+						$('#addProductFormType').val();
+						$('#addProductFormImg1').val();
+						$('#addProductFormImg2').val();
+						$('#addProductFormImg3').val();
+						$('#addProductFormPrice').val();
+					    $('#userId').val();
+					    }, // success
+					    error:function(){
+					    	console.log('error: cannot call api');
+					    } // error
+					}); // ajax
+	    	}
+ 	});
 
 
  // DELETE PRODUCT
+
+// $('#delForm').submit(function(){
+//   event.preventDefault();
+//   if(!sessionStorage['userID']){
+//         alert('401, permission denied');
+//         return;
+//     };
+
+//   let  productId = $('#delProductId').val();
+
+//   console.log(productId);
+
+//   if (productId == '') {
+//     alert('Please enter product id');
+//   } else { $.ajax({
+//           url :`${url}/deleteProduct/${productId}`,
+//           type :'DELETE',
+//           data:{
+//             userId: sessionStorage['userID']
+//           },
+//           success : function(data){
+//             console.log(data);
+//             if (data=='deleted'){
+//               alert('deleted');
+//               $('#delProductId').val('');
+//             } else {
+//               alert('Enter a valid id');
+//             }
+
+//           },//success
+//           error:function(){
+//             console.log('error: cannot call api');
+//           }//error
+
+
+//         });//ajax
+//   }
+// });//submit function for delete product
+
 
 //Categories Menu Functionality
   $('#categoriesMenuBtn').click(function(){

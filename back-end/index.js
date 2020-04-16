@@ -11,7 +11,7 @@ const User = require('./models/user.js'); //this refers to the structure for use
 const Product = require('./models/product.js'); //this refers to the structure for product ojects
 const Comment = require('./models/comment.js'); //this refers to the structure for product ojects
 
-const port = 8080; //set server port [8888: localhost / 3000: 192.168.33.10]
+const port = 8888; //set server port [8888: localhost / 3000: 192.168.33.10]
 
 const mongodbURI = `mongodb+srv://${config.MONGO_USER}:${config.MONGO_PASSWORD}@${config.MONGO_CLUSTER_NAME}.mongodb.net/sum3?retryWrites=true&w=majority`; //set what mongoDb to look at (set which collection with word after mongodeb.net/)
 mongoose.connect(mongodbURI, {useNewUrlParser: true, useUnifiedTopology: true}) // connect to above
@@ -141,6 +141,20 @@ app.patch('/updateUser/:id',(req,res)=> {
       userDesc : req.body.userDesc,
       profileImg : req.body.profileImg
 
+    }; // end updated user const
+    User.updateOne({_id:idParam}, updatedUser).then(result => {
+      res.send(result);
+    }).catch(err => res.send(err)); // end update one
+  }).catch(err => res.send('User not found')); // end find by id
+}); // end update user
+
+
+//Update Profile Picture
+app.patch('/updateProfileImg/:id',(req,res)=> {
+  const idParam = req.params.id;
+  User.findById(idParam,(err)=> {
+    const updatedUser = {
+      profileImg : req.body.profileImg
     }; // end updated user const
     User.updateOne({_id:idParam}, updatedUser).then(result => {
       res.send(result);

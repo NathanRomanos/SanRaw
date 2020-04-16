@@ -139,6 +139,10 @@ h1 {
 	margin-bottom: .5rem;
 }
 
+.previousListings-h1{
+	padding-top: 50px;
+}
+
 .modal-header, .modal-body {
 	border-bottom: 0px;
 	padding-bottom: 0px;

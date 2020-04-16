@@ -173,6 +173,20 @@ app.patch('/updateProfileImg/:id',(req,res)=> {
   }).catch(err => res.send('User not found')); // end find by id
 }); // end update user
 
+
+//Update Profile Picture
+app.patch('/updateProfileImg/:id',(req,res)=> {
+  const idParam = req.params.id;
+  User.findById(idParam,(err)=> {
+    const updatedUser = {
+      profileImg : req.body.profileImg
+    }; // end updated user const
+    User.updateOne({_id:idParam}, updatedUser).then(result => {
+      res.send(result);
+    }).catch(err => res.send(err)); // end update one
+  }).catch(err => res.send('User not found')); // end find by id
+}); // end update user
+
 //-------------------------------End User Section-------------------------------//
 
 

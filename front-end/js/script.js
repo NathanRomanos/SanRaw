@@ -78,7 +78,7 @@ $('#register_sub').click(function(){
 
 
 //login
-<<<<<<< HEAD
+
 $('#loginSubmit').click(function(){
 event.preventDefault();
 
@@ -132,7 +132,7 @@ console.log(username, password);
 	});//end ajax
 
 	}// end outer if statement
-=======
+
   $('#loginSubmit').click(function(){
     event.preventDefault();
 
@@ -186,7 +186,7 @@ console.log(username, password);
     });//end ajax
 
   }// end outer if statement
->>>>>>> 2f2fd4abc9d48e436bdf60ed1101ecc8371230fe
+
 });// end login function
 
 // logout Btn
@@ -235,7 +235,7 @@ $('#logoutUserBtn').click(function(){
   $('#categoriesMenuBtn').click(function(){
     $('#categoriesMenu').toggle();
   });
-<<<<<<< HEAD
+
 
 //displays all plants [alexis]
 $.ajax({
@@ -337,8 +337,7 @@ success : function(productCard){
 //     console.log('error: modal cannot be called');
 //   }//error
 // });//ajax
-=======
->>>>>>> 2f2fd4abc9d48e436bdf60ed1101ecc8371230fe
+
 
 
 //

@@ -58,8 +58,6 @@ h1 {
 }
 
 .btnDropdown {
-	position: absolute;
-	right: 0;
 	margin-top: -30px;
 }
 
@@ -85,6 +83,14 @@ h1 {
 	z-index: 0;
 	width: 80%;
 	margin: 0px 10% 20px 10%;
+}
+
+#userImgDiv {
+	display: inline;
+}
+
+#userimg{
+	cursor: pointer;
 }
 
 .userImg {
@@ -157,4 +163,8 @@ form {
 
 .userInfoLabel {
 	text-transform: uppercase;
+}
+
+.cardContainer{
+	margin-top: 50px;
 }

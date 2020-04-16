@@ -328,7 +328,7 @@
 			<button class="btn addProductBtn" id="addProjectBtn" data-toggle="modal" data-target=".add-product-modal"> Add Product </button>
 
 
-			<!-- Add Product Modal -->
+		<!-- Add Product Modal -->
 
 		<div class="modal fade bd-example-modal-lg add-product-modal" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" aria-hidden="true">
 			  <div class="modal-dialog modal-lg">
@@ -405,11 +405,11 @@
 					  </div>
 					  <div class="row">
 					    <div class="col-4">
-					      <label class="userInfoLabel" for="addProductFormPrice">Image 3</label>
+					      <label class="userInfoLabel" for="addProductFormPrice">Price</label>
 					    </div>
 					    <div class="col-8">
 					    	<small id="required" class="form-text text-muted">*Required</small>
-					      <input type="text" id="addProductFormPrice" name="addProductFormPrice" class="form-control" placeholder="$0.00">
+					      <input type="text" id="addProductFormPrice" name="addProductFormPrice" class="form-control">
 					    </div>
 					  </div>
 					</form>
@@ -422,8 +422,125 @@
 			</div>
 
 
+			<!-- Edit Product Modal -->
 
-			<div id="userProducts"></div>
+			<div class="modal fade bd-example-modal-lg edit-product-modal" id="editProductModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" aria-hidden="true">
+				  <div class="modal-dialog modal-lg">
+				  	<div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body userInfoModalBody">
+				        <h1> Edit Product </h1>
+
+
+				        <!-- Add product form -->
+
+				        <form id="editProductForm">
+						  <div class="row">
+						    <div class="col-4">
+						      <label class="userInfoLabel" for="editProductFormName">Name</label>
+						    </div>
+						    <div class="col-8">
+						    <small id="required" class="form-text text-muted">*Required</small>
+						      <input type="text" id="editProductFormName" name="editProductFormName" class="form-control">
+						    </div>
+						  </div>
+						  <div class="row">
+						    <div class="col-4">
+						      <label class="userInfoLabel" for="editProductFormDescription">Description</label>
+						    </div>
+						    <div class="col-8">
+						      <small id="required" class="form-text text-muted">*Required</small>
+						      <textarea class="form-control" id="editProductFormDescription" name="editProductFormDescription" rows="3"></textarea>
+						    </div>
+						  </div>
+						  <div class="row">
+						    <div class="col-4">
+						      <label class="userInfoLabel" for="editProductFormType">Type</label>
+						    </div>
+						    <div class="col-8">
+						    	<small id="required" class="form-text text-muted">*Required</small>
+						      <select class="form-control" id="editProductFormType" name="editProductFormType">
+								  <option value="Monstera">Monstera</option>
+								  <option value="Pothos">Pothos</option>
+								  <option value="Philodendron">Philodendron</option>
+								  <option value="Peperomia">Peperomia</option>
+								</select>
+						    </div>
+						  </div>
+						  <div class="row">
+						    <div class="col-4">
+						      <label class="userInfoLabel" for="editProductFormImg1">Image 1</label>
+						    </div>
+						    <div class="col-8">
+						    	<small id="required" class="form-text text-muted">*Required</small>
+						      <input type="text" id="editProductFormImg1" name="editProductFormImg1" class="form-control" placeholder="Image Link">
+						    </div>
+						  </div>
+						  <div class="row">
+						    <div class="col-4">
+						      <label class="userInfoLabel" for="editProductFormImg2">Image 2</label>
+						    </div>
+						    <div class="col-8">
+						      <input type="text" id="editProductFormImg2" name="editProductFormImg2" class="form-control" placeholder="Image Link">
+						    </div>
+						  </div>
+						  <div class="row">
+						    <div class="col-4">
+						      <label class="userInfoLabel" for="editProductFormImg3">Image 3</label>
+						    </div>
+						    <div class="col-8">
+						      <input type="text" id="editProductFormImg3" name="editProductFormImg3" class="form-control" placeholder="Image Link">
+						    </div>
+						  </div>
+						  <div class="row">
+						    <div class="col-4">
+						      <label class="userInfoLabel" for="editProductFormPrice">Price</label>
+						    </div>
+						    <div class="col-8">
+						    	<small id="required" class="form-text text-muted">*Required</small>
+						      <input type="text" id="editProductFormPrice" name="editProductFormPrice" class="form-control">
+						    </div>
+						  </div>
+						</form>
+				      </div>
+				      <div class="modal-footer">
+				        <button id="editProduct" name="productButton" type="submit" class="btn cardBtn" data-dismiss="modal">Save Changes</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+
+
+				<!-- Delete Product Confirmation Modal -->
+<!-- 				<div class="modal fade product-delete-confirmation-modal" id="productdeleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="false" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				      	<form id="delForm">
+				      		Are you sure you wish to delete this product? 
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" data-dismiss="modal">Yes</button>
+				        </form>
+				      </div>
+				    </div>
+				  </div>
+				</div> -->
+
+
+
+			<div id="userProducts" class="row"> </div>
 
 		</div>
 

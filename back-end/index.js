@@ -138,9 +138,34 @@ app.patch('/updateUser/:id',(req,res)=> {
       lastName : req.body.lastName,
       email : req.body.email,
       password : hash,
-      userDesc : req.body.userDesc,
-      profileImg : req.body.profileImg
+      userDesc : req.body.userDesc
+    }; // end updated user const
+    User.updateOne({_id:idParam}, updatedUser).then(result => {
+      res.send(result);
+    }).catch(err => res.send(err)); // end update one
+  }).catch(err => res.send('User not found')); // end find by id
+}); // end update user
 
+
+//Update Profile Picture
+app.patch('/updateProfileImg/:id',(req,res)=> {
+  const idParam = req.params.id;
+  User.findById(idParam,(err)=> {
+    const updatedUser = {
+      profileImg : req.body.profileImg
+    }; // end updated user const
+    User.updateOne({_id:idParam}, updatedUser).then(result => {
+      res.send(result);
+    }).catch(err => res.send(err)); // end update one
+  }).catch(err => res.send('User not found')); // end find by id
+}); // end update user
+
+//Update Profile Picture
+app.patch('/updateProfileImg/:id',(req,res)=> {
+  const idParam = req.params.id;
+  User.findById(idParam,(err)=> {
+    const updatedUser = {
+      profileImg : req.body.profileImg
     }; // end updated user const
     User.updateOne({_id:idParam}, updatedUser).then(result => {
       res.send(result);

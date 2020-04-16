@@ -11,25 +11,27 @@
 
 	<body>
 
-	<div>
+	<div id="homeDiv">
 
 	<div class="headingContainer">
 
 		<!-- Nav Bar starts -->
 		<div id="navContainer" class="navbar row">
-			<div class="col-3"><a class="btn" href="user.html" id="profileButton">User</a></div>
+			<div class="col-3">
+				<button  id="profileButton" class="btn btnNav">Profile</button>
+			</div>
 			<div class="col-6"><h1> Plant Market </h1></div>
 
 			<!-- login, logout and register container -->
 				<div class="btnNavContainer col-3">
 					<div class="btnContainer">
-						<button id="registerNewUserBtn" class="btn btnNav" data-toggle="modal" data-target=".register-modal">Register</button>
+						<button id="registerNewUserBtn" class="btn btnNav" data-toggle="modal" data-target=".register-modal">Sign Up</button>
 					</div>
 					<div class="btnContainer">
 						<button id="loginUserBtn" class="btn btnNav" data-toggle="modal" data-target=".login-modal">Login</button>
 					</div>
 					<div class="btnContainer">
-						<button id="logoutUserBtn" class="btn btnNav" data-target=".register-modal">Log Out</button>
+						<button class="btn btnNav logoutUserBtn" data-target=".register-modal">Log Out</button>
 					</div>
 				</div>
 			<!-- Login, logout and register container ends -->
@@ -130,28 +132,31 @@
 
 	<div class="container">
 
+			<hr>
 			<h1 class="pageHeading"> Listings </h1>
 
 		<!-- Product Card -->
 
 		<div class="dropdown">
-				  <button class="btn btnDropdown dropdown-toggle" type="button" id="categoriesMenuBtn">
-				    Categories
-				  </button>
+				  <button class="btn btnDropdown dropdown-toggle" type="button" id="categoriesMenuBtn">Categories</button>
 				  <div id="categoriesMenu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				    <a class="dropdown-item" href="#">Monstera</a>
-				    <a class="dropdown-item" href="#">Pothos</a>
-				    <a class="dropdown-item" href="#">Philodendron</a>
-				    <a class="dropdown-item" href="#">Peperomia</a>
+				    <option class="dropdown-item" value="Monstera">Monstera</option>
+				    <option class="dropdown-item" value="Pothos">Pothos</option>
+				    <option class="dropdown-item" value="Philodendron">Philodendron</option>
+				    <option class="dropdown-item" value="Peperomia">Peperomia</option>
 				  </div>
 				</div>
 
+    
+		<!-- Dynamically generated cards print here -->
 
 		<div class="row cardContainer" id="cardContainer"></div>
 
 		<!-- Product Modal -->
 
-		<div class="modal fade bd-example-modal-lg product-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div id="productModal"></div>
+
+		<!-- <div class="modal fade bd-example-modal-lg product-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-lg" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header productModalHeader">
@@ -206,7 +211,120 @@
 		      </div>
 		    </div>
 		  </div>
+		</div> -->
+
+	</div>
+
+</div> <!-- Home Div ends -->
+
+
+
+<!--_________________________________________________ PROFILE PAGE _________________________________________________ -->
+<!--_________________________________________________ PROFILE PAGE _________________________________________________ -->
+<!--_________________________________________________ PROFILE PAGE _________________________________________________ -->
+<!--_________________________________________________ PROFILE PAGE _________________________________________________ -->
+<!--_________________________________________________ PROFILE PAGE _________________________________________________ -->
+	<div id="profileDiv">
+
+	<div class="headingContainer">
+
+		<!-- Nav Bar starts -->
+		<div id="navContainer" class="navbar row">
+			<div class="col-3">
+				<button  id="homeButton" class="btn btnNav">Home</button>
+			</div>
+			<div class="col-6"><h1> Plant Market </h1></div>
+
+			<!-- login and register container -->
+				<div class="btnNavContainer col-3">
+					<div class="btnContainer">
+						<button class="btn btnNav logoutUserBtn" data-target=".register-modal">Log Out</button>
+					</div>
+				</div>
+			<!-- Login and register container ends -->
+
+	</div> <!-- Nav Bar Ends -->
+
+	<!-- Background Image  -->
+	<div class="bgImgContainer">
+		<img class="bgImg" src="img/bannerImg.jpg" alt="Background Image">
+	</div>
+
+	<div class="userContainer">
+
+		<div id="userImgDiv">
+
 		</div>
+
+		<button class="btn editBtn" data-toggle="modal" data-target=".editUser-modal"> Edit </button>
+
+
+		<!-- Edit Profile Image Modal -->
+		<div class="modal fade bd-example-modal-lg editProfileImg-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle"></h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body userInfoModalBody">
+							<h1> Edit Profile Picture </h1>
+						<form>
+							<div class="row">
+								<div class="col-4">
+									<label class="userInfoLabel" for="infoFormFirstName">Profile Picture</label>
+								</div>
+								<div class="col-8">
+									<input type="text" id="editUserImgInput" class="form-control" placeholder="link">
+								</div>
+							</div>
+						</form>
+					</div>
+						<div class="modal-footer">
+							<button id="editUserImgSubmit" type="button" class="btn cardBtn">Submit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+	<!-- Edit User Information Modal -->
+
+	<div class="modal fade bd-example-modal-lg editUser-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle"></h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body userInfoModalBody">
+						<h1> Edit Information </h1>
+
+						<form id="editUser-modal">
+						</form>
+
+					</div>
+					<div class="modal-footer">
+						<button id="editUserSubmit" type="button" class="btn cardBtn">Save changes</button>
+					</div>
+				</div>
+			</div>
+	</div>
+
+
+		<!-- User Information Div -->
+
+
+		<div id="userInfoResults" class="userInfoContainer row">
+			<h1 class="col-12"> Previous Listings </h1>
+
+		</div>
+
+		<!-- End of info display -->
 
 	</div>
 
@@ -215,10 +333,10 @@
 	  <!-- Optional JavaScript -->
   	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-
-	<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
-	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>	
+    
+	  <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+	  <script type="text/javascript" src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+	  <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="js/script.js"></script>
 	</body>
 

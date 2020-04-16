@@ -49,13 +49,42 @@ h1 {
 	font-size: 12px;
 }
 
+.secondaryCardBtn {
+	line-height: 18px;
+	font-weight: lighter;
+}
+
+.secondaryCardDiv {
+	text-align: center;
+}
+
+.card {
+	border: 0px;
+}
+
 .cardBtn {
 	display: block;
 	margin: auto;
-	width: 50%;
+	width: 80%;
 	color: #ffffff;
 	background-color: #4B5940;
 }
+
+.image-div {
+	position:relative;
+    overflow:hidden;
+    padding-bottom:100%;
+}
+
+.card-thumbnail {
+	position: absolute;
+      max-width: 100%;
+      max-height: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+}
+
 .addProductBtn {
 	color: #ffffff;
 	background-color: #4B5940;

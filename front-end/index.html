@@ -154,7 +154,72 @@
 
 		<!-- Product Modal -->
 
-		<div id="productModal"></div>
+		<div id="productModal">
+
+			<div class="modal fade bd-example-modal-lg product-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header productModalHeader">
+							<h3 id="productModalTitle" class="modal-title"></h3>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true" class="display-3" style="line-height:40%;">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body productModalBody">
+							<img id="productModalProfileImg" class="modal-profileImg" src="images/profile.jpg" alt="Profile Pic of the seller">
+							<h6 class="modal-username" id="productModalUsername"></h6>
+							<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+								<ol class="carousel-indicators">
+									<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+									<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+									<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+								</ol>
+								<div class="carousel-inner">
+									<div id="productModalImg1" class="carousel-item active"></div>
+									<div id="productModalImg2" class="carousel-item"></div>
+									<div id="productModalImg3" class="carousel-item"></div>
+								</div>
+								<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+									<span class="carousel-control-prev-icon text-primary" aria-hidden="true"></span>
+									<span class="sr-only">Previous</span>
+								</a>
+								<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="sr-only">Next</span>
+								</a>
+							</div>
+							<div class="modal-bottom row">
+								<div class="col col-5">
+								<p class="modal-description" id="productModalDesc"></p>
+								<h4 id="productModalPrice"></h4>
+								<button class="btn cardBtn" data-dismiss="modal"> Buy </button>
+								</div>
+								<div class="col col-7">
+									<h5> Comments </h5>
+
+									<div class="addComment">
+										<img class="commentPic" src="images/profile.jpg">
+										<input id="commentText" class="commentText" type="text" name="commentText" value="" autocomplete="off" placeholder="Write a comment...">
+										<button id="commentSubmit" class="commentBtn" type="button" name="button">Submit</button>
+									</div>
+
+									<div id="commentDiv"></div>
+
+									<!-- <div class="comment">
+										<img class="commentPic" src="images/profile.jpg">
+										<div class="commentText">
+											I would be interested in purchasing this. How's $12 sound?
+										</div>
+									</div> -->
+
+								</div>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+		</div>
 
 		<!-- <div class="modal fade bd-example-modal-lg product-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-lg" role="document">

@@ -8,6 +8,8 @@ h1, h2, h3, h4, h5,.btn {
 	font-weight: bold;
 	text-align: center;
 	text-transform: uppercase;
+	font-stretch: expanded;
+	font
 }
 
 h1 {
@@ -26,6 +28,10 @@ h1 {
 
 .btnNav {
 	display: inline-block;
+}
+
+.btnNavContainer{
+	text-align: right;
 }
 
 .btnContainer {
@@ -172,9 +178,36 @@ h1 {
 	padding-top: 50px;
 }
 
-.modal-header, .modal-body {
+
+/* Product Listing Modal */
+
+.modal-lg{
+	max-width: 75%;
+}
+
+.modal-content{
+	padding: 6%;
+}
+
+.modal-body{
 	border-bottom: 0px;
 	padding-bottom: 0px;
+}
+
+.modal-header{
+	border-bottom: 0px;
+	padding-bottom: 10px;
+}
+
+.modal-profileImg{
+	width: 50px;
+	border-radius: 50%;
+	display: inline;
+	margin-right: 10px;
+}
+
+.modal-username{
+	display: inline;
 }
 
 .modal-body {
@@ -189,6 +222,100 @@ h1 {
 	border-top: 0px;
 	padding: 10px 0 25px 0;
 }
+
+.modal-bottom{
+	margin-top: 20px;
+}
+
+.modal-description{
+	margin-bottom: 40px;
+}
+
+.carousel{
+	padding: 100px;
+}
+
+.w-100{
+	width: unset !important;
+	height: 60vh;
+	margin: auto;
+}
+
+.carousel-control-next-icon {
+  background-image: url("../images/right.svg");
+	width: 50px;
+	height: 50px;
+}
+
+.carousel-control-prev-icon {
+  background-image: url("../images/left.svg");
+	width: 50px;
+	height: 50px;
+}
+
+.carousel-indicators li {
+	background-color: #333;
+	border-radius: 25%;
+}
+
+
+.comment, .addComment{
+	width: 100%;
+	padding: 5px;
+	display: flex;
+	position: relative;
+	margin: 25px 0;
+}
+
+.commentPic{
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+}
+
+.commentText{
+	margin-left: 20px;
+	padding: 5px;
+	width: 100%;
+	border: 2px solid  #818C5A;
+	border-radius: 20px;
+}
+
+.commentSellerText{
+	margin-right: 20px;
+	padding: 5px;
+	width: 100%;
+	border: 2px solid  #818C5A;
+	border-radius: 20px;
+}
+
+.commentUserText{
+	margin-left: 20px;
+	padding: 5px;
+	width: 100%;
+	background-color: #818C5A;
+	color: white;
+	border-radius: 20px;
+}
+
+.commentBtn{
+	position: absolute;
+	font-size: 0.9rem;
+	right: 0;
+	bottom: 0;
+	background-color: #4B5940;
+	color: white;
+	border-radius: 10px;
+	border: none;
+}
+
+#commentUsername{
+	position: absolute;
+	left: 90px;
+	bottom: -17px;
+}
+
+/* end Product Listing Modal */
 
 form {
 	margin-top: 25px;

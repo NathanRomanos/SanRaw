@@ -1,8 +1,8 @@
-// Nathan's Code:
 console.log('working');
 
 let url;
 
+// Set the url [Nathan]
 $.ajax({
 
 		url :'config.json',
@@ -11,20 +11,50 @@ $.ajax({
 		success : function(configData){
 			console.log(configData);
 			url = `${configData.SERVER_URL}:${configData.SERVER_PORT}`;
-		},
+
+      $.ajax({
+      url :`${url}/displayAllProducts`, //from Mongo db
+      type :'GET',
+      dataType:'json',
+
+      success : function(productCard){
+        console.log(productCard);
+
+        //Display the cards on home [Nathan, Alexis produced the HTML]
+        document.getElementById('cardContainer').innerHTML = "";
+          for(let i=0; i<productCard.length; i++){
+            document.getElementById('cardContainer').innerHTML +=
+
+              `<div class="card col-4">
+                <img src="${productCard[i].productImg1}" class="card-img-top" alt="Card Thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">${productCard[i].productName}</h5>
+                  <p class="card-text">${productCard[i].productPrice}</p>
+                  <button type="button" class="btn cardBtn" data-toggle="modal" data-target=".product-modal" data-ID="${productCard[i]._id}">View More</button>
+                </div>
+              </div>`;
+          }
+        },// end product card success
+        error:function(){
+          console.log('error: product cards cannot be called');
+        }//error
+      });//ajax
+		}, // end config data success
 		error:function (){
 			console.log('oops');
 		}
-   }); // end initial server GET
+}); // end initial server GET
 
 
 $(document).ready(function() {
 
 console.log(sessionStorage)
 
-//Automatic hide
+//Automatic functions [Nathan]
 $('#profileDiv').hide();
 
+
+//Nav bar conditions [Nathan]
 if (sessionStorage['length'] === 0) {
   console.log('session storage is empty');
   $('#loginUserBtn').show();
@@ -39,7 +69,6 @@ if (sessionStorage['length'] === 0) {
   $('.logoutUserBtn').show();
   $('#profileButton').show();
 };
-// Nathan's code ends
 
 //
 //
@@ -92,9 +121,7 @@ $('#register_sub').click(function(){
 //Alexis' code ends
 
 
-//Nathan's code:
-//login
-
+//login [Nathan]
 $('#loginSubmit').click(function(){
 event.preventDefault();
 
@@ -151,7 +178,8 @@ console.log(username, password);
 	}// end outer if statement
 
 });// end login function
-// logout Btn
+
+// logout Btn [Nathan]
 $('.logoutUserBtn').click(function(){
   console.log('You are logged out');
   sessionStorage.clear();
@@ -178,16 +206,7 @@ $('.logoutUserBtn').click(function(){
 //
 // PROFILE PAGE START
 
-
-
-//Profile Image
-if (sessionStorage['user-profileImg'] == "undefined") {
-  document.getElementById('userImgDiv').innerHTML = `<img id="userImg" class="userImg" src="http://4.bp.blogspot.com/-zsbDeAUd8aY/US7F0ta5d9I/AAAAAAAAEKY/UL2AAhHj6J8/s1600/facebook-default-no-profile-pic.jpg" data-toggle="modal" data-target=".editProfileImg-modal" alt="Default User Image">`
-} else {
-    document.getElementById('userImgDiv').innerHTML = `<img id="userImg" class="userImg" src="${sessionStorage['user-profileImg']}" data-toggle="modal" data-target=".editProfileImg-modal" alt="User Image">`
-};
-
-
+//Edit the Profile Picture [Nathan]
 $('#editUserImgSubmit').click(function(){
   event.preventDefault();
   console.log('hi');
@@ -211,7 +230,7 @@ $('#editUserImgSubmit').click(function(){
   });//end ajax
 });
 
-//Display information on profile page
+//Display information on profile page [Nathan]
 $('#profileButton').click(function(){
   event.preventDefault();
 
@@ -227,11 +246,12 @@ $('#profileButton').click(function(){
     dataType :'json',
     success : function(displayUser){
       if (displayUser['profileImg'] == "undefined") {
-        document.getElementById('userImgDiv').innerHTML = `<img id="userImg" class="userImg" src="http://4.bp.blogspot.com/-zsbDeAUd8aY/US7F0ta5d9I/AAAAAAAAEKY/UL2AAhHj6J8/s1600/facebook-default-no-profile-pic.jpg" data-toggle="modal" data-target=".editProfileImg-modal" alt="Default User Image">`
+        document.getElementById('userImgDiv').innerHTML = `<img id="userImg" class="userImg" src="images/profile.jpg" data-toggle="modal" data-target=".editProfileImg-modal" alt="Default User Image">`
       } else {
           document.getElementById('userImgDiv').innerHTML = `<img id="userImg" class="userImg" src="${displayUser['profileImg']}" data-toggle="modal" data-target=".editProfileImg-modal" alt="User Image">`
       };
-      //displaying the ajax information on the page
+
+      //displaying the ajax information on the page [Nathan, Shay produced the HTML]
       document.getElementById('userInfoResults').innerHTML =
       `<div class="col-2">
         <h6 class="userInfolabel"> First Name </h6>
@@ -259,7 +279,7 @@ $('#profileButton').click(function(){
       </div>`;
       console.log(displayUser);
 
-      //Retrieving edit modal information from ajax
+      //Retrieving edit modal information from ajax [Nathan, Shay produced the HTML]
       document.getElementById('editUser-modal').innerHTML =
       `<form>
           <div class="row">
@@ -365,7 +385,7 @@ $('#profileButton').click(function(){
 });
 
 
-//Edit User Information Functionality
+//Edit User Information Functionality [Nathan]
 $('#editUserSubmit').click(function(){
   event.preventDefault();
   console.log('hi');
@@ -424,7 +444,7 @@ $('#editUserSubmit').click(function(){
 
 
 
-//Home button
+//Home button [Nathan]
 $('#homeButton').click(function(){
   event.preventDefault();
 
@@ -449,19 +469,144 @@ $('#homeButton').click(function(){
 //
 // PRODUCT JS START
 
+//Function to display Modal [Nathan]
+function displayModal(data){
+  let productID = data.getAttribute('data-ID');
+  console.log(productID);
 
-// ---------------- Shay Code Starts --------------
+  //Insert Product information into the modal [Nathan]
+  $.ajax({
+    url : `${url}/displaySingleProduct/${productID}`,
+    type : 'GET',
+    dataType : 'json',
+    success : function(productData){
+      console.log(productData);
+      $('#productModalProfileImg').attr("src", `${productData[0]['productProfileImg']}`);
+      document.getElementById('productModalTitle').innerHTML = `${productData[0]['productName']}</h3>`;
+      document.getElementById('productModalUsername').innerHTML = `${productData[0]['productUsername']}</h3>`;
+      document.getElementById('productModalImg1').innerHTML = `<img  src="${productData[0]['productImg1']}" class="d-block w-100" alt="Product Image One">`;
+      document.getElementById('productModalImg2').innerHTML = `<img  src="${productData[0]['productImg2']}" class="d-block w-100" alt="Product Image One">`;
+      document.getElementById('productModalImg3').innerHTML = `<img  src="${productData[0]['productImg3']}" class="d-block w-100" alt="Product Image One">`;
+      document.getElementById('productModalDesc').innerHTML = `${productData[0]['productDesc']}</h3>`;
+      document.getElementById('productModalPrice').innerHTML = "$" + `${productData[0]['productPrice']}</h3>`;
 
-// ADD PRODUCT (Shay)
+      //Add a comment [Nathan]
+      $('#commentSubmit').click(function(){
 
-$('#addProduct').click(function(){
-	let name = $('#addProductFormName').val();
-    let desc = $('#addProductFormDescription').val();
-	let type = $('#addProductFormType').val();
-	let img1 = $('#addProductFormImg1').val();
-	let img2 = $('#addProductFormImg2').val();
-	let img3 = $('#addProductFormImg3').val();
-	let price = parseInt($('#addProductFormPrice').val());
+        let userID = sessionStorage['user-id'];
+        let commentText = $('#commentText').val();
+        let commentUsername = sessionStorage['user-userName'];
+        let commentProfileImg = sessionStorage['user-profileImg']
+        let seller;
+        if (sessionStorage['user-id'] == productData[0].user_id) {
+          seller = true
+        } else {
+          seller = false
+        };
+
+        //add comment ajax [Nathan]
+        $.ajax({
+            url : `${url}/addComment`,
+            type : 'POST',
+            data : {
+              commentText : commentText,
+              commentUsername : commentUsername,
+              seller : seller,
+              commentProfileImg : commentProfileImg,
+              user_id : userID,
+              product_id : productID
+            },
+            success : function(newComment){
+              console.log(newComment);
+              displayComments()
+            }, // end product data function
+            error : function(){
+              console.log('Cannot add comment');
+            }// end error
+           }); // end ajax
+        });// end comment submit function
+
+
+        //View the comments for the specific product [Nathan]
+        function displayComments(){
+          document.getElementById('commentDiv').innerHTML = "";
+
+          $.ajax({
+              url : `${url}/displayProductComments/${productID}`,
+              type : 'GET',
+              dataType : 'json',
+              success : function(commentData){
+                console.log(commentData);
+
+                for (var c = 0; c < commentData.length; c++) {
+                  // if (seller = true) {
+                  //   document.getElementById('commentDiv').innerHTML +=
+                  //   `<div class="comment">
+  								// 		<div class="commentSellerText">
+  								// 			${commentData[c].commentText}
+  								// 		</div>
+                  //     <img class="commentPic" src="${commentData[c].commentProfileImg}">
+                  //     <div id="commentUsername">${commentData[c].commentUsername} [seller]</div>
+  								// 	</div>`
+                  // }
+                  if (sessionStorage['user-id'] === commentData[c].user_id) {
+                    document.getElementById('commentDiv').innerHTML +=
+                    `<div class="comment">
+  										<img class="commentPic" src="${commentData[c].commentProfileImg}">
+  										<div class="commentUserText">
+  											${commentData[c].commentText}
+  										</div>
+                      <div id="commentUsername">${commentData[c].commentUsername}</div>
+  									</div>`
+                  } else {
+                    document.getElementById('commentDiv').innerHTML +=
+                    `<div class="comment">
+  										<img class="commentPic" src="${commentData[c].commentProfileImg}">
+  										<div class="commentText">
+  											${commentData[c].commentText}
+  										</div>
+                      <div id="commentUsername">${commentData[c].commentUsername}</div>
+  									</div>`
+                  } // end else statement
+
+                } // end for loop
+
+              }, // end product data function
+              error : function(){
+                console.log('Cannot add comment');
+              }// end error
+             }); // end ajax
+        }
+        displayComments();
+
+      
+      }, // end product data success function
+        error : function(){
+          console.log('Cannot call API to display the product modal');
+        } // end error
+        }); // end ajax
+
+
+};
+
+$('#cardContainer').on('click', '.cardBtn', function(){
+  displayModal(this);
+});
+
+
+
+// ADD PROJECT [Shay]
+ $('#addProjectForm').submit(function(){
+
+ 	event.preventDefault();
+
+    let productName = $('#addProductFormName').val();
+    let productDesc = $('#addProductFormDescription').val();
+	  let productType = $('#addProductFormType').val();
+	  let productImg1 = $('#addProductFormImg1').val();
+	  let productImg2 = $('#addProductFormImg2').val();
+	  let productImg3 = $('#addProductFormImg3').val();
+	  let productPrice = $('#addProductFormPrice').val();
     let user_id = sessionStorage.getItem('user-id');
 
     $.ajax({
@@ -587,36 +732,34 @@ $('#addProduct').click(function(){
 
 
 //displays all plants [alexis]
-$.ajax({
-url :`${url}/displayAllProducts`, //from Mongo db
-type :'GET',
-dataType:'json',
-
-success : function(productCard){
-  console.log(productCard);
-
-  document.getElementById('cardContainer').innerHTML = "";
-	  for(let i=0; i<productCard.length; i++){
-	    document.getElementById('cardContainer').innerHTML +=
-
-		`		<div class="card col-4">
-				<div class="image-div">
-				  <img src="${productCard[i].productImg1}" class="card-img-top card-thumbnail" alt="Card Thumbnail">
-				</div>
-				  <div class="card-body">
-				    <h5 class="card-title">${productCard[i].productName}</h5>
-				    <p class="card-text">$${productCard[i].productPrice}.00</p>
-				    <button type="button" class="btn cardBtn" data-toggle="modal" data-target=".product-modal">View More</button>
-				  </div>
-				</div>
-	    `;
-	  }
-  },//success
-
-  error:function(){
-    console.log('error: product cards cannot be called');
-  }//error
-});//ajax
+// $.ajax({
+// url :`${url}/displayAllProducts`, //from Mongo db
+// type :'GET',
+// dataType:'json',
+//
+// success : function(productCard){
+//   console.log(productCard);
+//
+//   document.getElementById('cardContainer').innerHTML = "";
+// 	  for(let i=0; i<productCard.length; i++){
+// 	    document.getElementById('cardContainer').innerHTML +=
+//
+// 		`		<div class="card col-4">
+// 				  <img src="${productCard[i].productImg1}" class="card-img-top" alt="Card Thumbnail">
+// 				  <div class="card-body">
+// 				    <h5 class="card-title">${productCard[i].productName}</h5>
+// 				    <p class="card-text">${productCard[i].productPrice}</p>
+// 				    <button type="button" class="btn cardBtn" data-toggle="modal" data-target=".product-modal">View More</button>
+// 				  </div>
+// 				</div>
+// 	    `;
+// 	  }
+//   },//success
+//
+//   error:function(){
+//     console.log('error: product cards cannot be called');
+//   }//error
+// });//ajax
 
 
 //displays modal content [alexis]

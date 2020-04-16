@@ -147,7 +147,7 @@
 				  </div>
 				</div>
 
-    
+
 		<!-- Dynamically generated cards print here -->
 
 		<div class="row cardContainer" id="cardContainer"></div>
@@ -319,21 +319,126 @@
 		<!-- User Information Div -->
 
 
-		<div id="userInfoResults" class="userInfoContainer row">
-			<h1 class="col-12"> Previous Listings </h1>
+		<div  class="userInfoContainer">
+			<div id="userInfoResults" class="row">
+
+			</div>
+			<h1 class="col-12 previousListings-h1"> Previous Listings </h1>
+
+			<button class="btn addProductBtn" id="addProjectBtn" data-toggle="modal" data-target=".add-product-modal"> Add Product </button>
+
+
+			<!-- Add Product Modal -->
+
+		<div class="modal fade bd-example-modal-lg add-product-modal" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" aria-hidden="true">
+			  <div class="modal-dialog modal-lg">
+			  	<div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body userInfoModalBody">
+			        <h1> Add new product </h1>
+
+
+			        <!-- Add product form -->
+
+			        <form id="addProductForm">
+					  <div class="row">
+					    <div class="col-4">
+					      <label class="userInfoLabel" for="addProductFormName">Name</label>
+					    </div>
+					    <div class="col-8">
+					    <small id="required" class="form-text text-muted">*Required</small>
+					      <input type="text" id="addProductFormName" name="addProductFormName" class="form-control" placeholder="Product Name">
+					    </div>
+					  </div>
+					  <div class="row">
+					    <div class="col-4">
+					      <label class="userInfoLabel" for="addProductFormDescription">Description</label>
+					    </div>
+					    <div class="col-8">
+					      <small id="required" class="form-text text-muted">*Required</small>
+					      <textarea class="form-control" id="addProductFormDescription" name="addProductFormDescription" rows="3" placeholder="Description"></textarea>
+					    </div>
+					  </div>
+					  <div class="row">
+					    <div class="col-4">
+					      <label class="userInfoLabel" for="addProductFormType">Type</label>
+					    </div>
+					    <div class="col-8">
+					    	<small id="required" class="form-text text-muted">*Required</small>
+					      <select class="form-control" id="addProductFormType" name="addProductFormType">
+							  <option value="Monstera">Monstera</option>
+							  <option value="Pothos">Pothos</option>
+							  <option value="Philodendron">Philodendron</option>
+							  <option value="Peperomia">Peperomia</option>
+							</select>
+					    </div>
+					  </div>
+					  <div class="row">
+					    <div class="col-4">
+					      <label class="userInfoLabel" for="addProductFormImg1">Image 1</label>
+					    </div>
+					    <div class="col-8">
+					    	<small id="required" class="form-text text-muted">*Required</small>
+					      <input type="text" id="addProductFormImg1" name="addProductFormImg1" class="form-control" placeholder="Image Link">
+					    </div>
+					  </div>
+					  <div class="row">
+					    <div class="col-4">
+					      <label class="userInfoLabel" for="addProductFormImg2">Image 2</label>
+					    </div>
+					    <div class="col-8">
+					      <input type="text" id="addProductFormImg2" name="addProductFormImg2" class="form-control" placeholder="Image Link">
+					    </div>
+					  </div>
+					  <div class="row">
+					    <div class="col-4">
+					      <label class="userInfoLabel" for="addProductFormImg3">Image 3</label>
+					    </div>
+					    <div class="col-8">
+					      <input type="text" id="addProductFormImg3" name="addProductFormImg3" class="form-control" placeholder="Image Link">
+					    </div>
+					  </div>
+					  <div class="row">
+					    <div class="col-4">
+					      <label class="userInfoLabel" for="addProductFormPrice">Image 3</label>
+					    </div>
+					    <div class="col-8">
+					    	<small id="required" class="form-text text-muted">*Required</small>
+					      <input type="text" id="addProductFormPrice" name="addProductFormPrice" class="form-control" placeholder="$0.00">
+					    </div>
+					  </div>
+					</form>
+			      </div>
+			      <div class="modal-footer">
+			        <button id="addProduct" name="productButton" type="submit" class="btn cardBtn" data-dismiss="modal">Add Product</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+
+
+			<div id="userProducts"></div>
 
 		</div>
 
 		<!-- End of info display -->
 
-	</div>
+	</div> <!-- user container ends -->
 
-	</div>
+</div> <!-- headingContainer ends -->
+
+</div>
 
 	  <!-- Optional JavaScript -->
   	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-    
+
 	  <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
 	  <script type="text/javascript" src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
 	  <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>

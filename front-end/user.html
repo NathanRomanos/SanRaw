@@ -15,8 +15,8 @@
 	<div>
 
 	<div class="headingContainer">
-		
-		<!-- Nav Bar starts --> 
+
+		<!-- Nav Bar starts -->
 		<div id="navContainer" class="navbar row">
 			<div class="col-3"><a class="btn" href="index.html" id="profileButton">Home</a></div>
 			<div class="col-6"><h1> Plant Market </h1></div>
@@ -24,10 +24,7 @@
 			<!-- login and register container -->
 				<div class="btnNavContainer col-3">
 					<div class="btnContainer">
-						<button id="registerNewUserBtn" class="btn btnNav" data-toggle="modal" data-target="#registerNewUserModal">Register</button>
-					</div>
-					<div class="btnContainer">
-						<button id="loginUserBtn" class="btn btnNav" data-toggle="modal" data-target="#loginUserModal">Login</button>
+						<button id="logoutUserBtn" class="btn btnNav" data-target=".register-modal">Log Out</button>
 					</div>
 				</div>
 			<!-- Login and register container ends -->
@@ -39,23 +36,54 @@
 					</div>
 				</div>
 		</div>
-		<!-- Nav Bar Ends --> 
+		<!-- Nav Bar Ends -->
 
 	</div>
 
-	<!-- Background Image  --> 
+	<!-- Background Image  -->
 	<div class="bgImgContainer">
 		<img class="bgImg" src="img/bannerImg.jpg" alt="Background Image">
 	</div>
 
 	<div class="userContainer">
 
-		<img class="userImg" src="img/bannerImg.jpg" alt="User Image">
+		<div id="userImgDiv"></div>
 
 		<button class="btn editBtn" data-toggle="modal" data-target=".editUser-modal"> Edit </button>
 
 
-	<!-- Edit User Information Modal --> 
+		<!-- Edit Profile Image Modal -->
+		<div class="modal fade bd-example-modal-lg editProfileImg-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" aria-hidden="true">
+			  <div class="modal-dialog modal-lg">
+			  	<div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body userInfoModalBody">
+			        <h1> Edit Profile Picture </h1>
+		        <form>
+						  <div class="row">
+						    <div class="col-4">
+						      <label class="userInfoLabel" for="infoFormFirstName">Profile Picture</label>
+						    </div>
+						    <div class="col-8">
+						      <input type="text" id="editUserImgInput" class="form-control" placeholder="link">
+						    </div>
+							</div>
+						</form>
+		      </div>
+			      <div class="modal-footer">
+			        <button id="editUserImgSubmit" type="button" class="btn cardBtn">Submit</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+
+	<!-- Edit User Information Modal -->
 
 	<div class="modal fade bd-example-modal-lg editUser-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" aria-hidden="true">
 		  <div class="modal-dialog modal-lg">
@@ -129,42 +157,17 @@
 		</div>
 
 
-		<!-- User Information Div --> 
+		<!-- User Information Div -->
 
 
-		<div class="userInfoContainer row">
-			<div class="col-2">
-			    <h6 class="userInfolabel"> First Name </h6>
-			    <br>
-			    <h6 class="userInfolabel"> Last Name </h6>
-			    <br>
-			    <h6 class="userInfolabel"> Description </h6>
-			</div>
-			<div class="col-4"> 
-				<p class="userInfoInput"> First name </p>
-				<br>
-				<p class="userInfoInput"> Last name </p>
-				<br>
-			    <p class="userInfoInput"> Description </p>
-			</div>
-			<div class="col-2">
-			    <h6 class="userInfolabel"> Username </h6>
-			    <br>
-			    <h6 class="userInfolabel"> Email </h6>
-			</div>
-			<div class="col-4">
-				<p class="userInfoInput"> Username </p>
-				<br>
-			    <p class="userInfoInput"> Email </p>
-			  </div>
-
-		<h1 class="col-12"> Previous Listings </h1>
+		<div id="userInfoResults" class="userInfoContainer row">
+			<h1 class="col-12"> Previous Listings </h1>
 
 		</div>
 
 		<!-- End of info display -->
 
-	</div> 
+	</div>
 
 	</div>
 

@@ -85,6 +85,14 @@ h1 {
 	margin: 0px 10% 20px 10%;
 }
 
+#userImgDiv {
+	display: inline;
+}
+
+#userimg{
+	cursor: pointer;
+}
+
 .userImg {
 	border-radius: 50%;
 	border: 5px solid #ffffff;

@@ -13,7 +13,7 @@ const Comment = require('./models/comment.js'); //this refers to the structure f
 
 const port = 8080; //set server port [8888: localhost / 3000: 192.168.33.10]
 
-const mongodbURI = `mongodb+srv://${config.MONGO_USER}:${config.MONGO_PASS}@${config.MONGO_CLUSTER}.mongodb.net/sum3?retryWrites=true&w=majority`; //set what mongoDb to look at (set which collection with word after mongodeb.net/)
+const mongodbURI = `mongodb+srv://${config.MONGO_USER}:${config.MONGO_PASSWORD}@${config.MONGO_CLUSTER_NAME}.mongodb.net/sum3?retryWrites=true&w=majority`; //set what mongoDb to look at (set which collection with word after mongodeb.net/)
 mongoose.connect(mongodbURI, {useNewUrlParser: true, useUnifiedTopology: true}) // connect to above
 .then(()=> console.log('Mongo DB connection established!')) //success message
 .catch(err =>{ //error catch

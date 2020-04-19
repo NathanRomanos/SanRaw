@@ -11,7 +11,7 @@ $.ajax({
 		type :'GET',
 		dataType :'json',
 		success : function(configData){
-			console.log(configData);
+			// console.log(configData);
 			url = `${configData.SERVER_URL}:${configData.SERVER_PORT}`;
 
       //Display the cards on home [Nathan, Alexis produced the HTML]
@@ -21,7 +21,7 @@ $.ajax({
       dataType:'json',
 
       success : function(productCard){
-        console.log(productCard);
+        // console.log(productCard);
 
         document.getElementById('cardContainer').innerHTML = "";
           for(let i=0; i<productCard.length; i++){
@@ -53,7 +53,7 @@ $.ajax({
 
 $(document).ready(function() {
 
-console.log(sessionStorage);
+// console.log(sessionStorage);
 
 //Automatic functions [Nathan]
 $('#profileDiv').hide();
@@ -99,13 +99,7 @@ $('#register_sub').click(function(){
     let lastName = $('#register_lastName').val();
     let email = $('#register_email').val();
     let password = $('#register_password').val();
-
-    // username = document.getElementById('register_username').value;
-    // firstName = document.getElementById('register_firstName').value;
-    // lastName = document.getElementById('register_lastName').value;
-    // email = document.getElementById('register_email').value;
-    // password = document.getElementById('register_password').value;
-    console.log(username,firstName,lastName,email,password);
+    // console.log(username,firstName,lastName,email,password);
 
     $.ajax({
       url : `${url}/signUpUser`,
@@ -121,7 +115,7 @@ $('#register_sub').click(function(){
         if (registerData === 'Username already exists. Please try another one') {
           alert ('Username in use. Please Register again');
         } else {
-            console.log(registerData);
+            // console.log(registerData);
             alert('You have successfully signed up. Please login to continue')
         }
       }, //success
@@ -142,7 +136,7 @@ event.preventDefault();
 let username = $('#loginUsername').val();
 let password = $('#loginPassword').val();
 
-console.log(username, password);
+// console.log(username, password);
 
 	if (username == '' || password == ''){
 	  alert('Please enter all details');
@@ -157,7 +151,7 @@ console.log(username, password);
 	    },
 
 	  success : function(user){
-	    console.log(user);
+	    // console.log(user);
 	    if (user == 'User not found. Please sign up'){
 	    alert('User not found. Please enter correct data or register a new user');
 
@@ -174,7 +168,7 @@ console.log(username, password);
 	      sessionStorage.setItem('user-email',user['email']);
 	      sessionStorage.setItem('user-profileImg',user['profileImg']);
 	      sessionStorage.setItem('user-userDesc',user['userDesc']);
-	      console.log(sessionStorage);
+	      // console.log(sessionStorage);
         window.location.reload(false);
 
 	      //change the navbar
@@ -196,7 +190,7 @@ console.log(username, password);
 
 // logout Btn [Nathan]
 $('.logoutUserBtn').click(function(){
-  console.log('You are logged out');
+  // console.log('You are logged out');
   sessionStorage.clear();
   $('#loginUserBtn').show();
   $('#registerNewUserBtn').show();
@@ -204,7 +198,7 @@ $('.logoutUserBtn').click(function(){
   $('#profileDiv').hide();
   $('.logoutUserBtn').hide();
   $('#profileButton').hide();
-  console.log(sessionStorage);
+  // console.log(sessionStorage);
   window.location.reload(false);
 });
 //
@@ -225,7 +219,6 @@ $('.logoutUserBtn').click(function(){
 //Edit the Profile Picture [Nathan]
 $('#editUserImgSubmit').click(function(){
   event.preventDefault();
-  console.log('hi');
     let userID = sessionStorage['user-id'];
     let profileImg = $('#editUserImgInput').val();
 
@@ -236,9 +229,9 @@ $('#editUserImgSubmit').click(function(){
       profileImg : profileImg
     },
     success : function(user){
-      console.log(user);
+      // console.log(user);
       sessionStorage.setItem('user-profileImg',user['profileImg']);
-      console.log(sessionStorage);
+      // console.log(sessionStorage);
     },// end success function
     error:function(){
       console.log('error: cannot call api');
@@ -293,7 +286,7 @@ $('#profileButton').click(function(){
         <br>
         <p class="userInfoInput">${displayUser['email']}</p>
       </div>`;
-      console.log(displayUser);
+      // console.log(displayUser);
 
       //Retrieving edit modal information from ajax [Nathan, Shay produced the HTML]
       document.getElementById('editUser-modal').innerHTML =
@@ -359,7 +352,7 @@ $('#profileButton').click(function(){
   					type :'GET',
   					dataType:'json',
   						success : function(viewData){
-  						  console.log(viewData);
+  						  // console.log(viewData);
 
   						  document.getElementById('userProducts').innerHTML = "";
   							  for(let i=0; i < viewData.length; i++){
@@ -403,15 +396,15 @@ $('#profileButton').click(function(){
 //Retreive viewData info for edit product modal
 function editProduct(data){
   productID = data.getAttribute('data-ID');
-  console.log(productID);
-  console.log(sessionStorage);
+  // console.log(productID);
+  // console.log(sessionStorage);
 
   $.ajax({
     url : `${url}/displaySingleProduct/${productID}`,
     type : 'GET',
     dataType : 'json',
     success : function(productData){
-      console.log(productData);
+      // console.log(productData);
 
       $('#editProductFormName').attr("value", `${productData[0].productName}`);
       document.getElementById('editProductFormDescription').innerHTML = `${productData[0].productDesc}`;
@@ -457,7 +450,7 @@ function editProduct(data){
      		let productImg3 = $('#editProductFormImg3').val();
      		let productPrice = $('#editProductFormPrice').val();
 
-   	    console.log(productName, productDesc, productType, productImg1, productImg2, productImg3, productPrice);
+   	    // console.log(productName, productDesc, productType, productImg1, productImg2, productImg3, productPrice);
    	     $.ajax({
    	    			url : `${url}/updateProduct/${productID}`,
    	    			type : 'PATCH',
@@ -471,7 +464,7 @@ function editProduct(data){
  				        productPrice : productPrice
    	    			},
    	    			success : function(data){
-   	    				console.log(data);
+   	    				// console.log(data);
    	    				if (data == '401 error; user has no permission to update') {
    	    					alert ('401 error; user has no permission to update');
    			            } else{
@@ -496,7 +489,6 @@ function editProduct(data){
 //Edit User Information Functionality [Nathan]
 $('#editUserSubmit').click(function(){
   event.preventDefault();
-  console.log('hi');
 
   let userID = sessionStorage['user-id'];
   let firstName = $('#infoFormFirstName').val();
@@ -506,7 +498,7 @@ $('#editUserSubmit').click(function(){
   let email = $('#infoFormEmail').val();
   let password = $('#infoPassword').val();
 
-  console.log(username, password);
+  // console.log(username, password);
 
   if (username == '' || password == '' || email == '' || firstName == '' || lastName == '' || userDesc == ''){
     alert('Please enter all details');
@@ -529,8 +521,8 @@ $('#editUserSubmit').click(function(){
       //
       // }
       alert('updated the user');
-      console.log(user);
-      console.log(sessionStorage);
+      // console.log(user);
+      // console.log(sessionStorage);
 
         //change the navbar
         $('#loginUserBtn').hide();
@@ -591,7 +583,7 @@ $('#type-all').click(function(){
   dataType:'json',
 
   success : function(productCard){
-    console.log(productCard);
+    // console.log(productCard);
 
     document.getElementById('cardContainer').innerHTML = "";
       for(let i=0; i<productCard.length; i++){
@@ -623,7 +615,7 @@ $('#type-monstera').click(function(){
   dataType:'json',
 
   success : function(productCard){
-    console.log(productCard);
+    // console.log(productCard);
 
     document.getElementById('cardContainer').innerHTML = "";
       for(let i=0; i<productCard.length; i++){
@@ -657,7 +649,7 @@ $('#type-pothos').click(function(){
   dataType:'json',
 
   success : function(productCard){
-    console.log(productCard);
+    // console.log(productCard);
 
     document.getElementById('cardContainer').innerHTML = "";
       for(let i=0; i<productCard.length; i++){
@@ -691,7 +683,7 @@ $('#type-philodendron').click(function(){
   dataType:'json',
 
   success : function(productCard){
-    console.log(productCard);
+    // console.log(productCard);
 
     document.getElementById('cardContainer').innerHTML = "";
       for(let i=0; i<productCard.length; i++){
@@ -725,7 +717,7 @@ $('#type-peperomia').click(function(){
   dataType:'json',
 
   success : function(productCard){
-    console.log(productCard);
+    // console.log(productCard);
 
     document.getElementById('cardContainer').innerHTML = "";
       for(let i=0; i<productCard.length; i++){
@@ -755,15 +747,15 @@ $('#type-peperomia').click(function(){
 //Function to display Modal [Nathan]
 function displayModal(data){
   productID = data.getAttribute('data-ID');
-  console.log(productID);
-  console.log(sessionStorage);
+  // console.log(productID);
+  // console.log(sessionStorage);
   //Insert Product information into the modal [Nathan]
   $.ajax({
     url : `${url}/displaySingleProduct/${productID}`,
     type : 'GET',
     dataType : 'json',
     success : function(productData){
-      console.log(productData);
+      // console.log(productData);
 
       productUserID = productData[0].user_id;
 
@@ -824,7 +816,7 @@ $('#commentSubmit').click(function(){
           product_id : productID
         },
         success : function(newComment){
-          console.log(newComment);
+          // console.log(newComment);
           displayComments();
            $('.commentText').css("border", "2px solid #818C5A");
         }, // end product data function
@@ -845,7 +837,7 @@ $('#commentSubmit').click(function(){
         type : 'GET',
         dataType : 'json',
         success : function(commentData){
-          console.log(commentData);
+          // console.log(commentData);
 
           for (var c = 0; c < commentData.length; c++) {
             if (commentData[c].seller === true) {
@@ -946,7 +938,7 @@ function deleteProduct(data){
 
   productID = data.getAttribute('data-ID');
 
-  console.log(productID);
+  // console.log(productID);
 
   $.ajax({
     url : `${url}/displaySingleProduct/${productID}`,
@@ -954,7 +946,7 @@ function deleteProduct(data){
     dataType : 'json',
     success : function(productData){
 
-      console.log(productData);
+      // console.log(productData);
 
       $('#deleteProductSubmit').click(function(){
         $.ajax({
@@ -963,7 +955,7 @@ function deleteProduct(data){
           dataType : 'json',
           success : function(deleteData){
 
-            console.log(deleteData);
+            // console.log(deleteData);
 
           },//success
           error:function(){

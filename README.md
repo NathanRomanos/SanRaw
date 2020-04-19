@@ -10,6 +10,11 @@ Alexis A, Shay Wellington, and Nathan Romanos
 
 ---
 
+## CSS Methodology
+OOCSS
+
+---
+
 ## CSS Style Guide
 
 - Use external scripts unless justified
@@ -77,9 +82,13 @@ Declarations_Within_Blocks#Function_Declarations_Within_Blocks
 8. In both the front-end folder and back-end folder you will find files called **config-template.json**
 9. Duplicate both of these folders and rename them **config.json**
 10. Inside the back-end config.json file, insert the following information:
-   1. mongo username
-   2. mongo password
-   3. mongo clustername
+   1. Your mongo username
+   2. Your mongo password
+   3. "sum3-idtnx"
 11. Indside the front-end config.json file, insert the following information:
-   1. server url
-   2. 3000
+   1. server url (in our case it is http://localhost)
+   2. 8888
+
+
+## Instructions on how to run this project
+1. To connect your local server to this project simply `cd` into the back-end folder of this project using your terminal/cmd and type `npm run dev`

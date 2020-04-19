@@ -53,7 +53,7 @@ $.ajax({
 
 $(document).ready(function() {
 
-console.log(sessionStorage)
+console.log(sessionStorage);
 
 //Automatic functions [Nathan]
 $('#profileDiv').hide();
@@ -75,8 +75,13 @@ if (sessionStorage['length'] === 0) {
   $('#profileButton').show();
 
   //Navbar Profile Image [Nathan]
-  $('#profileButton').attr('src', sessionStorage['user-profileImg'])
-};
+  if (sessionStorage['user-profileImg'] == "undefined") {
+    $('#profileButton').attr('src', 'images/profile.jpg');
+  } else {
+    $('#profileButton').attr('src', sessionStorage['user-profileImg']);
+  }// end profile image if statement
+
+}// end nav bar if statement
 
 //
 //
@@ -113,10 +118,11 @@ $('#register_sub').click(function(){
         password : password
       },
       success : function(registerData){
-        if (registerData === 'user details incorrect. Please try again') {
+        if (registerData === 'Username already exists. Please try another one') {
           alert ('Username in use. Please Register again');
         } else {
             console.log(registerData);
+            alert('You have successfully signed up. Please login to continue')
         }
       }, //success
       error : function(){
@@ -152,11 +158,11 @@ console.log(username, password);
 
 	  success : function(user){
 	    console.log(user);
-	    if (user == 'user not found. Please register'){
-	    alert('user not found. Please enter correct data or register a new user');
+	    if (user == 'User not found. Please sign up'){
+	    alert('User not found. Please enter correct data or register a new user');
 
-	    } else if (user == 'not authorized'){
-	      alert('Please try with correct details');
+	    } else if (user == 'Not authorized'){
+	      alert('The password you have entered is incorrect');
 	      $('#username').val('');
 	      $('#password').val('');
 	    } else{
@@ -256,9 +262,9 @@ $('#profileButton').click(function(){
     dataType :'json',
     success : function(displayUser){
       if (displayUser['profileImg'] == "undefined") {
-        document.getElementById('userImgDiv').innerHTML = `<img id="userImg" class="userImg" src="images/profile.jpg" data-toggle="modal" data-target=".editProfileImg-modal" alt="Default User Image">`
+        document.getElementById('userImgDiv').innerHTML = `<img id="userImg" class="userImg" src="images/profile.jpg" data-toggle="modal" data-target=".editProfileImg-modal" alt="Default User Image">`;
       } else {
-          document.getElementById('userImgDiv').innerHTML = `<img id="userImg" class="userImg" src="${displayUser['profileImg']}" data-toggle="modal" data-target=".editProfileImg-modal" alt="User Image">`
+          document.getElementById('userImgDiv').innerHTML = `<img id="userImg" class="userImg" src="${displayUser['profileImg']}" data-toggle="modal" data-target=".editProfileImg-modal" alt="User Image">`;
       };
 
       //displaying the ajax information on the page [Nathan, Shay produced the HTML]
@@ -340,7 +346,7 @@ $('#profileButton').click(function(){
 							<input type="password" id="infoPassword" class="form-control" placeholder="password">
 						</div>
 					</div>
-				</form>`
+				</form>`;
 
 
 				// VIEW PRODUCTS ON USER PAGE (Shay)
@@ -483,7 +489,7 @@ function editProduct(data){
           console.log('Cannot call API to display the product modal');
         } // end error
       }); // end display product ajax
-}; // end edit product function
+} // end edit product function
 
 
 
@@ -598,7 +604,7 @@ $('#type-all').click(function(){
                 <button type="button" class="btn cardBtn" data-toggle="modal" data-target=".product-modal" data-ID="${productCard[i]._id}">View More</button>
               </div>
             </div>`;
-          document.getElementById('listingsHeader').innerHTML = "Listings";
+          document.getElementById('listingsHeader').innerHTML = "<mark>Listings</mark>";
           $('#categoriesMenu').hide();
         }// end for loop
 
@@ -631,7 +637,7 @@ $('#type-monstera').click(function(){
                 <button type="button" class="btn cardBtn" data-toggle="modal" data-target=".product-modal" data-ID="${productCard[i]._id}">View More</button>
               </div>
             </div>`;
-          document.getElementById('listingsHeader').innerHTML = "Monstera Listings";
+          document.getElementById('listingsHeader').innerHTML = "<mark>Monstera Listings</mark>";
           $('#categoriesMenu').hide();
           } // end if statement
         }// end for loop
@@ -665,7 +671,7 @@ $('#type-pothos').click(function(){
                 <button type="button" class="btn cardBtn" data-toggle="modal" data-target=".product-modal" data-ID="${productCard[i]._id}">View More</button>
               </div>
             </div>`;
-          document.getElementById('listingsHeader').innerHTML = "Pothos Listings";
+          document.getElementById('listingsHeader').innerHTML = "<mark>Pothos Listings</mark>";
           $('#categoriesMenu').hide();
           } // end if statement
         }// end for loop
@@ -699,7 +705,7 @@ $('#type-philodendron').click(function(){
                 <button type="button" class="btn cardBtn" data-toggle="modal" data-target=".product-modal" data-ID="${productCard[i]._id}">View More</button>
               </div>
             </div>`;
-          document.getElementById('listingsHeader').innerHTML = "Philodendron Listings";
+          document.getElementById('listingsHeader').innerHTML = "<mark>Philodendron Listings</mark>";
           $('#categoriesMenu').hide();
           } // end if statement
         }// end for loop
@@ -733,7 +739,7 @@ $('#type-peperomia').click(function(){
                 <button type="button" class="btn cardBtn" data-toggle="modal" data-target=".product-modal" data-ID="${productCard[i]._id}">View More</button>
               </div>
             </div>`;
-          document.getElementById('listingsHeader').innerHTML = "Peperomia Listings";
+          document.getElementById('listingsHeader').innerHTML = "<mark>Peperomia Listings</mark>";
           $('#categoriesMenu').hide();
           } // end if statement
         }// end for loop
@@ -759,7 +765,7 @@ function displayModal(data){
     success : function(productData){
       console.log(productData);
 
-      productUserID = productData[0].user_id
+      productUserID = productData[0].user_id;
 
       $('#productModalProfileImg').attr("src", `${productData[0]['productProfileImg']}`);
       document.getElementById('productModalTitle').innerHTML = `${productData[0]['productName']}</h3>`;
@@ -775,7 +781,7 @@ function displayModal(data){
         document.getElementById('addComment').innerHTML =
         `<img id="addCommentPic" class="commentPic" src="images/profile.jpg">
         <input id="commentText" class="commentText" type="text" name="commentText" disabled="true" autocomplete="off" placeholder="Please sign in to write a comment...">
-        <button class="commentBtn" type="button" name="button">Submit</button>`
+        <button class="commentBtn" type="button" name="button">Submit</button>`;
       } else {}
 
       displayComments();
@@ -784,7 +790,7 @@ function displayModal(data){
           console.log('Cannot call API to display the product modal');
         } // end error
       }); // end display product ajax
-};
+}
 
 //Add a comment [Nathan]
 $('#commentSubmit').click(function(){
@@ -792,19 +798,19 @@ $('#commentSubmit').click(function(){
   let userID = sessionStorage['user-id'];
   let commentText = $('#commentText').val();
   let commentUsername = sessionStorage['user-userName'];
-  let commentProfileImg = sessionStorage['user-profileImg']
+  let commentProfileImg = sessionStorage['user-profileImg'];
   let seller;
   if (sessionStorage['user-id'] == productUserID) {
-    seller = true
+    seller = true;
   } else {
-    seller = false
-  };
+    seller = false;
+  }
 
   //add comment ajax [Nathan]
   if (sessionStorage.length === 0) {
-    alert('Please log in to post comments')
+    alert('Please log in to post comments');
   } else if (commentText === "") {
-   $('.commentText').css("border", "3px solid red")
+   $('.commentText').css("border", "3px solid red");
  } else {
     $.ajax({
         url : `${url}/addComment`,
@@ -819,8 +825,8 @@ $('#commentSubmit').click(function(){
         },
         success : function(newComment){
           console.log(newComment);
-          displayComments()
-           $('.commentText').css("border", "2px solid #818C5A")
+          displayComments();
+           $('.commentText').css("border", "2px solid #818C5A");
         }, // end product data function
         error : function(){
           console.log('Cannot add comment');
@@ -850,7 +856,7 @@ $('#commentSubmit').click(function(){
             		</div>
                 <img class="commentPic" src="${commentData[c].commentProfileImg}">
                 <div class="commentSellerUsername">${commentData[c].commentUsername} [seller]</div>
-            	</div>`
+            	</div>`;
             } else if (sessionStorage['user-id'] === commentData[c].user_id) {
               document.getElementById('commentDiv').innerHTML +=
               `<div class="comment">
@@ -859,7 +865,7 @@ $('#commentSubmit').click(function(){
                   ${commentData[c].commentText}
                 </div>
                 <div class="commentUsername">${commentData[c].commentUsername}</div>
-              </div>`
+              </div>`;
             } else {
               document.getElementById('commentDiv').innerHTML +=
               `<div class="comment">
@@ -868,7 +874,7 @@ $('#commentSubmit').click(function(){
                   ${commentData[c].commentText}
                 </div>
                 <div class="commentUsername">${commentData[c].commentUsername}</div>
-              </div>`
+              </div>`;
             } // end else statement
 
           } // end for loop
@@ -962,7 +968,7 @@ function deleteProduct(data){
           },//success
           error:function(){
             console.log('error: cannot call api');
-            alert('Error: Product deleted successfully')
+            alert('Error: Product deleted successfully');
           }//end error
         });//end ajax
       });//submit function for delete product

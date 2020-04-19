@@ -94,7 +94,7 @@ app.post('/loginUser', (req,res)=>{
       if (bcryptjs.compareSync(req.body.password, userResult.password)){
         res.send(userResult);
       } else {
-        res.send('Not authorized');
+          res.send('Not authorized');
       } // end inner if
     } else {
        res.send('User not found. Please sign up');

@@ -8,9 +8,9 @@ module.exports = function(grunt) {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
       build: {
-        src: 'src/<%= pkg.name %>.js',
-        dest: 'build/<%= pkg.name %>.min.js'
-      }
+       src: 'js/script.js',
+       dest: 'js/script.min.js'
+     }
     },
     jshint: {
       all: ['Gruntfile.js', 'js/script.js'],
@@ -42,9 +42,24 @@ module.exports = function(grunt) {
         }
       }
     },
+    cssmin: {
+      options: {
+        mergeIntoShorthands: false,
+        roundingPrecision: -1
+      },
+      target: {
+        files: [{
+          expand: true,
+          cwd: 'release/css',
+          src: ['css/*.css', '!*.min.css'],
+          dest: 'release/css',
+          ext: '.min.css'
+        }]
+      }
+    },
     watch: {
     scripts: {
-      files: ['Gruntfile.js','js/script.js','sass/*.scss'],
+      files: ['Gruntfile.js','js/script.js','sass/*.scss', 'css/*.css'],
       tasks: ['jshint','csslint'],
       options: {
         spawn: false,

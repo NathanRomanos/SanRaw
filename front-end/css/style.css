@@ -51,6 +51,7 @@ h1 {
 .nav-profileImg{
 	width: 50px;
 	border-radius: 50%;
+	cursor: pointer;
 }
 
 .bgImgContainer {
@@ -411,4 +412,15 @@ form {
 .mark, mark {
     padding: .2em 1em;
     background-color: white;
+}
+
+
+.deleteProductBtn{ /* Nathan */
+	background-color: #4B5940;
+	color: white;
+}
+
+.deleteProductBtn:hover{
+	background-color: #A2A63C;
+	color: black;
 }

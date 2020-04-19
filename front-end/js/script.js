@@ -39,7 +39,7 @@ $.ajax({
 
         },// end product card success
         error:function(){
-          console.log('error: product cards cannot be called');
+          console.log('Product cards cannot be called');
         }//error
       });//ajax
 
@@ -73,6 +73,9 @@ if (sessionStorage['length'] === 0) {
   $('#registerNewUserBtn').hide();
   $('.logoutUserBtn').show();
   $('#profileButton').show();
+
+  //Navbar Profile Image [Nathan]
+  $('#profileButton').attr('src', sessionStorage['user-profileImg'])
 };
 
 //
@@ -366,7 +369,7 @@ $('#profileButton').click(function(){
   								    <button type="button" class="btn cardBtn" data-toggle="modal" data-target=".product-modal" data-ID="${viewData[i]._id}">View More</button>
   								    <div class="secondaryCardDiv">
   									    <button type="button" class="btn secondaryCardBtn userProduct-edit" data-toggle="modal" data-target=".edit-product-modal" id="editProductBtn" data-ID="${viewData[i]._id}">Edit</button>
-  									    <button type="button" class="btn secondaryCardBtn" data-toggle="modal" data-target=".product-delete-confirmation-modal" id="deleteProduct" data-ID="${viewData[i]._id}">Delete</button>
+  									    <button type="button" class="btn secondaryCardBtn userProduct-delete" data-toggle="modal" data-target=".product-delete-confirmation-modal" id="deleteProduct" data-ID="${viewData[i]._id}">Delete</button>
   								  	</div>
   								  </div>
   								</div>`;
@@ -439,7 +442,6 @@ function editProduct(data){
 
       // UPDATE PRODUCT functionality (Shay and Nathan)
     	$('#editProduct').click(function(){
-       console.log('hi');
     		event.preventDefault();
     		let productName = $('#editProductFormName').val();
      	  let productDesc = $('#editProductFormDescription').val();
@@ -476,12 +478,12 @@ function editProduct(data){
    					}); // ajax
     	     });//end edit product function
 
-    }, // end product data success function
+         }, // end product data success function
         error : function(){
           console.log('Cannot call API to display the product modal');
         } // end error
       }); // end display product ajax
-};
+}; // end edit product function
 
 
 
@@ -888,6 +890,9 @@ $('#userProducts').on('click', '.cardBtn', function(){
 $('#userProducts').on('click', '.userProduct-edit', function(){
   editProduct(this);
 });
+$('#userProducts').on('click', '.userProduct-delete', function(){
+  deleteProduct(this);
+});
 
 
 
@@ -929,148 +934,46 @@ $('#userProducts').on('click', '.userProduct-edit', function(){
 
 
 
+// DELETE PRODUCT [Nathan]
 
- // DELETE PRODUCT
+function deleteProduct(data){
 
-// $('#delForm').submit(function(){
-//   event.preventDefault();
-//   if(!sessionStorage['userID']){
-//         alert('401, permission denied');
-//         return;
-//     };
+  productID = data.getAttribute('data-ID');
 
-//   let  productId = $('#delProductId').val();
+  console.log(productID);
 
-//   console.log(productId);
+  $.ajax({
+    url : `${url}/displaySingleProduct/${productID}`,
+    type : 'GET',
+    dataType : 'json',
+    success : function(productData){
 
-//   if (productId == '') {
-//     alert('Please enter product id');
-//   } else { $.ajax({
-//           url :`${url}/deleteProduct/${productId}`,
-//           type :'DELETE',
-//           data:{
-//             userId: sessionStorage['userID']
-//           },
-//           success : function(data){
-//             console.log(data);
-//             if (data=='deleted'){
-//               alert('deleted');
-//               $('#delProductId').val('');
-//             } else {
-//               alert('Enter a valid id');
-//             }
+      console.log(productData);
 
-//           },//success
-//           error:function(){
-//             console.log('error: cannot call api');
-//           }//error
+      $('#deleteProductSubmit').click(function(){
+        $.ajax({
+          url :`${url}/deleteProduct/${productID}`,
+          type :'DELETE',
+          dataType : 'json',
+          success : function(deleteData){
 
+            console.log(deleteData);
 
-//         });//ajax
-//   }
-// });//submit function for delete product
+          },//success
+          error:function(){
+            console.log('error: cannot call api');
+            alert('Error: Product deleted successfully')
+          }//end error
+        });//end ajax
+      });//submit function for delete product
+    }, // end product data success function
+    error : function(){
+      console.log('Cannot call API to display the product modal');
+    } // end error
+  }); // end display product ajax
+}//end delete product function
 
 
-//displays all plants [alexis]
-// $.ajax({
-// url :`${url}/displayAllProducts`, //from Mongo db
-// type :'GET',
-// dataType:'json',
-//
-// success : function(productCard){
-//   console.log(productCard);
-//
-//   document.getElementById('cardContainer').innerHTML = "";
-// 	  for(let i=0; i<productCard.length; i++){
-// 	    document.getElementById('cardContainer').innerHTML +=
-//
-// 		`		<div class="card col-4">
-// 				  <img src="${productCard[i].productImg1}" class="card-img-top" alt="Card Thumbnail">
-// 				  <div class="card-body">
-// 				    <h5 class="card-title">${productCard[i].productName}</h5>
-// 				    <p class="card-text">${productCard[i].productPrice}</p>
-// 				    <button type="button" class="btn cardBtn" data-toggle="modal" data-target=".product-modal">View More</button>
-// 				  </div>
-// 				</div>
-// 	    `;
-// 	  }
-//   },//success
-//
-//   error:function(){
-//     console.log('error: product cards cannot be called');
-//   }//error
-// });//ajax
-
-
-//displays modal content [alexis]
-// $.ajax({
-// url :`${url}/displayAllProducts`, //from Mongo db
-// type :'GET',
-// dataType:'json',
-
-// success : function(productModal){
-//   console.log(productModal);
-
-//   document.getElementById('modal-content').innerHTML = "";
-// 	  for(let i=0; i<productCard.length; i++){
-// 	    document.getElementById('modal-content').innerHTML +=
-
-// `
-// 	<div class="modal-header productModalHeader">
-// 		<h3 class="modal-title">${productCard[i].productName}</h3>
-// 		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-// 		<span aria-hidden="true">&times;</span>
-// 		</button>
-// 	</div>
-// 		<div class="modal-body productModalBody">
-// 			<h6> ${productCard[i].productType} </h6>
-
-// 				<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-// 					<ol class="carousel-indicators">
-// 						<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-// 						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-// 						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-// 					</ol>
-// 					<div class="carousel-inner">
-// 						<div class="carousel-item active">
-// 						<img src="${productCard[i].productImg1}" class="d-block w-100" alt="...">
-// 					</div>
-// 						<div class="carousel-item">
-// 						<img src="${productCard[i].productImg2}" class="d-block w-100" alt="...">
-// 					</div>
-// 						<div class="carousel-item">
-// 						<img src="${productCard[i].productImg3}" class="d-block w-100" alt="...">
-// 					</div>
-// 				</div>
-// 				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-// 					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-// 					<span class="sr-only">Previous</span>
-// 				</a>
-// 				<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-// 					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-// 					<span class="sr-only">Next</span>
-// 				</a>
-// 				</div>
-
-// 				<div class="row">
-// 					<div class="col">
-// 						<p> ${productCard[i].productDesc}</p>
-// 						<h4> ${productCard[i].productPrice} </h4>
-// 						<button class="btn cardBtn" data-dismiss="modal"> Buy </button>
-// 					</div>
-// 					<div class="col">
-// 						<h5> Comment </h5>
-// 					</div>
-// 				</div>
-// 		</div>
-// `;
-// 	  }
-//   },//success
-
-//   error:function(){
-//     console.log('error: modal cannot be called');
-//   }//error
-// });//ajax
 
 
 

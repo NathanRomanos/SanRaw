@@ -18,7 +18,7 @@
 		<!-- Nav Bar starts -->
 		<div id="navContainer" class="navbar row">
 			<div class="col-3 nav-spacing">
-				<img  id="profileButton" class="modal-profileImg" src="images/profile.jpg">
+				<img  id="profileButton" class="nav-profileImg" src="images/profile.jpg">
 			</div>
 			<div class="col-6"><h1> Plant Market </h1></div>
 
@@ -109,7 +109,7 @@
 						  </div>
 						  <div class="row">
 						  	<div class="col">
-						  		<input id="loginPassword" type="text" class="form-control" placeholder="Password" value="">
+						  		<input id="loginPassword" type="password" class="form-control" placeholder="Password" value="">
 						  	</div>
 						  </div>
 						</form>
@@ -263,7 +263,7 @@
 	<div class="userContainer">
 
 		<div id="userImgDiv">
-
+			<img id="userImg" class="userImg" src="images/profile.jpg" data-toggle="modal" data-target=".editProfileImg-modal" alt="Default User Image">
 		</div>
 
 		<button class="btn editBtn" data-toggle="modal" data-target=".editUser-modal"> Edit </button>
@@ -522,8 +522,8 @@
 
 
 
-				<!-- Delete Product Confirmation Modal -->
-<!-- 				<div class="modal fade product-delete-confirmation-modal" id="productdeleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="false" aria-hidden="true">
+				<!-- Delete Product Confirmation Modal [Alexiss] -->
+				<div class="modal fade product-delete-confirmation-modal" id="productdeleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="false" aria-hidden="true">
 				  <div class="modal-dialog" role="document">
 				    <div class="modal-content">
 				      <div class="modal-header">
@@ -536,12 +536,12 @@
 				      	<form id="delForm">
 				      		Are you sure you wish to delete this product?
 				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-				        <button type="submit" class="btn btn-primary" data-dismiss="modal">Yes</button>
+				        <button id="deleteProductSubmit" type="submit" class="btn deleteProductBtn" data-dismiss="modal">Yes</button>
 				        </form>
 				      </div>
 				    </div>
 				  </div>
-				</div> -->
+				</div>
 
 
 

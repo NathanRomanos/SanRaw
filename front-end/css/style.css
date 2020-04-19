@@ -38,9 +38,53 @@ h1 {
 	display: inline-block;
 }
 
-.bannerImg, .bgImg {
-	max-width: 100%;
-	height: auto;
+
+/* Navbar [Nathan] */
+.navbar{
+	background-color: white;
+}
+
+.nav-spacing{
+	padding: 0 2vw;
+}
+
+.nav-profileImg{
+	width: 50px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.bgImgContainer {
+	width: 100%;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: -1;
+}
+
+
+.bgImg {
+	overflow: hidden;
+	margin-left: -50%;
+}
+
+.bannerImg{
+	background-image: url("../images/bannerImg.jpg");
+  min-height: 500px;
+  /* background-attachment: fixed; */
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+	width: 96%;
+	margin: 0 2%;
+}
+
+.cardContainer{
+	margin-top: 20px;
+
+	display: flex;
+	justify-content: space-around;
 }
 
 .card-title {
@@ -64,31 +108,46 @@ h1 {
 	text-align: center;
 }
 
-.card {
+.card{ /* ALexis and Nathan */
 	border: 0px;
+	padding: 0.4vw;
+	margin: 1vw;
+	/* background-color: rgba(0,0,0,0.1); */
+	width: 30%;
+	flex-basis: 30%;
 }
 
-.cardBtn {
+.card:hover{ /* Nathan */
+	box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.8);
+	color: #4B5940;
+}
+
+.cardBtn /* Alexis and Nathan */ {
 	display: block;
 	margin: auto;
-	width: 80%;
+	padding: 3% 10%;
 	color: #ffffff;
 	background-color: #4B5940;
 }
 
+.cardBtn:hover, .commentBtn:hover{ /* Nathan */
+	background-color: #A2A63C;
+	color: black;
+}
+
 .image-div {
 	position:relative;
-    overflow:hidden;
-    padding-bottom:100%;
+  overflow:hidden;
+  padding-bottom:100%;
 }
 
 .card-thumbnail {
 	position: absolute;
-      max-width: 100%;
-      max-height: 100%;
-      top: 50%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%);
+  max-width: 100%;
+  max-height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 .addProductBtn {
@@ -109,14 +168,6 @@ h1 {
 	padding: 0 10px 10px 10px;
 }
 
-.bgImgContainer {
-	width: auto:
-	height 100vh;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
-}
-
 .userContainer {
 	position: absolute;
 	z-index: 0;
@@ -134,52 +185,59 @@ h1 {
 
 .userImg {
 	border-radius: 50%;
-	border: 5px solid #ffffff;
-	height: 150px;
-	width: 150px;
-	margin: 15px 10px 0 42.5%;
+	border: 0.7vw solid #ffffff;
+	height: 22vw;
+	width: 22vw;
+	margin: 50px 36% 0 36%;
 }
 
 .editBtn {
-	margin: auto;
-	width: 15%;
+	position: absolute;
+	top: 14vw;
+	right: 0;
+	padding: 5px 40px;
 	color: #4B5940;
 	background-color: #ffffff;
-	float: right;
-	margin-top: 70px;
 }
 
 .userInfoContainer {
 	background-color: #ffffff;
 	border-radius: 10px;
-	margin: -55px 0 0 0;
-	padding: 60px 10px 20px 10px;
+	margin-top: -9vw;
+	padding: 10vw 20px 20px 20px;
 }
 
 .userInfoLabel {
 	display: inline-block;
 	text-transform: uppercase;
-	font-size: 10pt;
+	font-size: 1rem;
 	line-height: 25px;
 	color: #666666;
-	margin-right: 10px;
+	margin-bottom: 20px;
 }
 
 .userInfoInput {
 	display: inline-block;
-	font-size: 10pt;
+	font-size: 1rem;
 	line-height: 25px;
 	color: #666666;
-	margin-right: 10px;
-	margin-bottom: .5rem;
+	margin-bottom: 20px;
 }
 
 .previousListings-h1{
-	padding-top: 50px;
+	margin-top: 50px;
+}
+
+.userProducts{ /* Nathan */
+	width: 80%;
+	margin: 0 10%;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
 }
 
 
-/* Product Listing Modal */
+/* Product Listing Modal [Nathan]*/
 
 .modal-lg{
 	max-width: 75%;
@@ -275,7 +333,7 @@ h1 {
 
 .commentText{
 	margin-left: 20px;
-	padding: 5px;
+	padding: 10px;
 	width: 100%;
 	border: 2px solid  #818C5A;
 	border-radius: 20px;
@@ -283,7 +341,7 @@ h1 {
 
 .commentSellerText{
 	margin-right: 20px;
-	padding: 5px;
+	padding: 10px;
 	width: 100%;
 	border: 2px solid  #818C5A;
 	border-radius: 20px;
@@ -291,7 +349,7 @@ h1 {
 
 .commentUserText{
 	margin-left: 20px;
-	padding: 5px;
+	padding: 10px;
 	width: 100%;
 	background-color: #818C5A;
 	color: white;
@@ -301,6 +359,7 @@ h1 {
 .commentBtn{
 	position: absolute;
 	font-size: 0.9rem;
+	font-family: 'Lora', serif;
 	right: 0;
 	bottom: 0;
 	background-color: #4B5940;
@@ -309,13 +368,20 @@ h1 {
 	border: none;
 }
 
-#commentUsername{
+.commentUsername{
 	position: absolute;
 	left: 90px;
 	bottom: -17px;
 }
 
-/* end Product Listing Modal */
+.commentSellerUsername{
+	position: absolute;
+	right: 90px;
+	bottom: -17px;
+}
+/* end Product Listing Modal [Nathan] */
+
+
 
 form {
 	margin-top: 25px;
@@ -329,6 +395,32 @@ form {
 	text-transform: uppercase;
 }
 
-.cardContainer{
-	margin-top: 50px;
+
+.headingLineDiv{
+	position: relative;
+}
+
+.headingLine{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	border: 1.5px solid black;
+	z-index: -1;
+}
+
+.mark, mark {
+    padding: .2em 1em;
+    background-color: white;
+}
+
+
+.deleteProductBtn{ /* Nathan */
+	background-color: #4B5940;
+	color: white;
+}
+
+.deleteProductBtn:hover{
+	background-color: #A2A63C;
+	color: black;
 }

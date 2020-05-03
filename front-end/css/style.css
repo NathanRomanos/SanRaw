@@ -1,0 +1,334 @@
+body {
+	font-family: 'Quicksand', sans-serif;
+	height:100%;
+}
+
+h1, h2, h3, h4, h5,.btn {
+	font-family: 'Lora', serif;
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+	font-stretch: expanded;
+	font
+}
+
+h1 {
+	font-size: 22pt;
+	text-align: center;
+}
+
+.pageHeading {
+	margin: 60px 0 60px 0;
+}
+
+.headingContainer {
+	overflow: hidden;
+	max-height: 75vh;
+}
+
+.btnNav {
+	display: inline-block;
+}
+
+.btnNavContainer{
+	text-align: right;
+}
+
+.btnContainer {
+	display: inline-block;
+}
+
+.bannerImg, .bgImg {
+	max-width: 100%;
+	height: auto;
+}
+
+.card-title {
+	text-align: center;
+}
+
+.card-text {
+	text-align: center;
+}
+
+.btn {
+	font-size: 12px;
+}
+
+.secondaryCardBtn {
+	line-height: 18px;
+	font-weight: lighter;
+}
+
+.secondaryCardDiv {
+	text-align: center;
+}
+
+.card {
+	border: 0px;
+}
+
+.cardBtn {
+	display: block;
+	margin: auto;
+	width: 80%;
+	color: #ffffff;
+	background-color: #4B5940;
+}
+
+.image-div {
+	position:relative;
+    overflow:hidden;
+    padding-bottom:100%;
+}
+
+.card-thumbnail {
+	position: absolute;
+      max-width: 100%;
+      max-height: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+}
+
+.addProductBtn {
+	color: #ffffff;
+	background-color: #4B5940;
+}
+
+.btnDropdown {
+	margin-top: -30px;
+}
+
+.productModalHeader {
+	padding: 10px 10px 0 10px;
+	border: 0px;
+}
+
+.productModalBody {
+	padding: 0 10px 10px 10px;
+}
+
+.bgImgContainer {
+	width: auto:
+	height 100vh;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.userContainer {
+	position: absolute;
+	z-index: 0;
+	width: 80%;
+	margin: 0px 10% 20px 10%;
+}
+
+#userImgDiv {
+	display: inline;
+}
+
+#userimg{
+	cursor: pointer;
+}
+
+.userImg {
+	border-radius: 50%;
+	border: 5px solid #ffffff;
+	height: 150px;
+	width: 150px;
+	margin: 15px 10px 0 42.5%;
+}
+
+.editBtn {
+	margin: auto;
+	width: 15%;
+	color: #4B5940;
+	background-color: #ffffff;
+	float: right;
+	margin-top: 70px;
+}
+
+.userInfoContainer {
+	background-color: #ffffff;
+	border-radius: 10px;
+	margin: -55px 0 0 0;
+	padding: 60px 10px 20px 10px;
+}
+
+.userInfoLabel {
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 10pt;
+	line-height: 25px;
+	color: #666666;
+	margin-right: 10px;
+}
+
+.userInfoInput {
+	display: inline-block;
+	font-size: 10pt;
+	line-height: 25px;
+	color: #666666;
+	margin-right: 10px;
+	margin-bottom: .5rem;
+}
+
+.previousListings-h1{
+	padding-top: 50px;
+}
+
+
+/* Product Listing Modal */
+
+.modal-lg{
+	max-width: 75%;
+}
+
+.modal-content{
+	padding: 6%;
+}
+
+.modal-body{
+	border-bottom: 0px;
+	padding-bottom: 0px;
+}
+
+.modal-header{
+	border-bottom: 0px;
+	padding-bottom: 10px;
+}
+
+.modal-profileImg{
+	width: 50px;
+	border-radius: 50%;
+	display: inline;
+	margin-right: 10px;
+}
+
+.modal-username{
+	display: inline;
+}
+
+.modal-body {
+	padding-top: 0px;
+}
+
+.userInfoModalBody {
+	padding: 0 10% 0 10%;
+}
+
+.modal-footer{
+	border-top: 0px;
+	padding: 10px 0 25px 0;
+}
+
+.modal-bottom{
+	margin-top: 20px;
+}
+
+.modal-description{
+	margin-bottom: 40px;
+}
+
+.carousel{
+	padding: 100px;
+}
+
+.w-100{
+	width: unset !important;
+	height: 60vh;
+	margin: auto;
+}
+
+.carousel-control-next-icon {
+  background-image: url("../images/right.svg");
+	width: 50px;
+	height: 50px;
+}
+
+.carousel-control-prev-icon {
+  background-image: url("../images/left.svg");
+	width: 50px;
+	height: 50px;
+}
+
+.carousel-indicators li {
+	background-color: #333;
+	border-radius: 25%;
+}
+
+
+.comment, .addComment{
+	width: 100%;
+	padding: 5px;
+	display: flex;
+	position: relative;
+	margin: 25px 0;
+}
+
+.commentPic{
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+}
+
+.commentText{
+	margin-left: 20px;
+	padding: 5px;
+	width: 100%;
+	border: 2px solid  #818C5A;
+	border-radius: 20px;
+}
+
+.commentSellerText{
+	margin-right: 20px;
+	padding: 5px;
+	width: 100%;
+	border: 2px solid  #818C5A;
+	border-radius: 20px;
+}
+
+.commentUserText{
+	margin-left: 20px;
+	padding: 5px;
+	width: 100%;
+	background-color: #818C5A;
+	color: white;
+	border-radius: 20px;
+}
+
+.commentBtn{
+	position: absolute;
+	font-size: 0.9rem;
+	right: 0;
+	bottom: 0;
+	background-color: #4B5940;
+	color: white;
+	border-radius: 10px;
+	border: none;
+}
+
+#commentUsername{
+	position: absolute;
+	left: 90px;
+	bottom: -17px;
+}
+
+/* end Product Listing Modal */
+
+form {
+	margin-top: 25px;
+}
+
+.form-control {
+	margin-bottom: 20px;
+}
+
+.userInfoLabel {
+	text-transform: uppercase;
+}
+
+.cardContainer{
+	margin-top: 50px;
+}

@@ -1,0 +1,312 @@
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Lora|Quicksand&display=swap" rel="stylesheet">
+    	<link rel="stylesheet" href="css/style.css">
+		<title>Plant Market</title>
+	</head>
+
+	<body>
+
+	<div>
+
+	<div class="headingContainer">
+
+		<!-- Nav Bar starts -->
+		<div id="navContainer" class="navbar row">
+			<div class="col-3"><a class="btn" href="index.html" id="profileButton">Home</a></div>
+			<div class="col-6"><h1> Plant Market </h1></div>
+
+			<!-- login and register container -->
+				<div class="btnNavContainer col-3">
+					<div class="btnContainer">
+						<button id="logoutUserBtn" class="btn btnNav" data-target=".register-modal">Log Out</button>
+					</div>
+				</div>
+			<!-- Login and register container ends -->
+
+
+			<!-- Logout button container -->
+				<div>
+					<div id="logoutUserBtnContainer" class="col-12">
+					</div>
+				</div>
+		</div>
+		<!-- Nav Bar Ends -->
+
+	</div>
+
+	<!-- Background Image  -->
+	<div class="bgImgContainer">
+		<img class="bgImg" src="img/bannerImg.jpg" alt="Background Image">
+	</div>
+
+	<div class="userContainer">
+
+		<div id="userImgDiv"></div>
+
+		<button class="btn editBtn" data-toggle="modal" data-target=".editUser-modal"> Edit </button>
+
+
+		<!-- Edit Profile Image Modal -->
+		<div class="modal fade bd-example-modal-lg editProfileImg-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" aria-hidden="true">
+			  <div class="modal-dialog modal-lg">
+			  	<div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body userInfoModalBody">
+			        <h1> Edit Profile Picture </h1>
+		        <form>
+						  <div class="row">
+						    <div class="col-4">
+						      <label class="userInfoLabel" for="infoFormFirstName">Profile Picture</label>
+						    </div>
+						    <div class="col-8">
+						      <input type="text" id="editUserImgInput" class="form-control" placeholder="link">
+						    </div>
+							</div>
+						</form>
+		      </div>
+			      <div class="modal-footer">
+			        <button id="editUserImgSubmit" type="button" class="btn cardBtn">Submit</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+
+	<!-- Edit User Information Modal -->
+
+	<div class="modal fade bd-example-modal-lg editUser-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" aria-hidden="true">
+		  <div class="modal-dialog modal-lg">
+		  	<div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body userInfoModalBody">
+		        <h1> Edit Information </h1>
+
+		        <form>
+				  <div class="row">
+				    <div class="col-4">
+				      <label class="userInfoLabel" for="infoFormFirstName">First Name</label>
+				    </div>
+				    <div class="col-8">
+				      <input type="text" id="infoFormFirstName" class="form-control" placeholder="First Name">
+				    </div>
+				  </div>
+				  <div class="row">
+				    <div class="col-4">
+				      <label class="userInfoLabel" for="infoFormLastName">Last Name</label>
+				    </div>
+				    <div class="col-8">
+				      <input type="text" id="infoFormLastName" class="form-control" placeholder="Last Name">
+				    </div>
+				  </div>
+				  <div class="row">
+				    <div class="col-4">
+				      <label class="userInfoLabel" for="infoFormDescription">Description</label>
+				    </div>
+				    <div class="col-8">
+				      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description"></textarea>
+				    </div>
+				  </div>
+				  <div class="row">
+				    <div class="col-4">
+				      <label class="userInfoLabel" for="infoFormUsername">Username</label>
+				    </div>
+				    <div class="col-8">
+				      <input type="text" id="infoFormUsername" class="form-control" placeholder="Username">
+				    </div>
+				  </div>
+				  <div class="row">
+				    <div class="col-4">
+				      <label class="userInfoLabel" for="infoFormEmail">Email</label>
+				    </div>
+				    <div class="col-8">
+				      <input type="email" id="infoFormEmail" class="form-control" placeholder="Email@email.com">
+				    </div>
+				  </div>
+				  <div class="row">
+				    <div class="col-4">
+				      <label class="userInfoLabel" for="infoFormPassword">Password</label>
+				    </div>
+				    <div class="col-8">
+				      <input type="password" id="infoPassword" class="form-control" placeholder="Password">
+				    </div>
+				  </div>
+				</form>
+
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn cardBtn">Save changes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+
+		<!-- User Information Div -->
+
+
+
+		<div id="userInfoResults" class="userInfoContainer row">
+			<div class="col-2">
+			    <h6 class="userInfolabel"> First Name </h6>
+			    <br>
+			    <h6 class="userInfolabel"> Last Name </h6>
+			    <br>
+			    <h6 class="userInfolabel"> Description </h6>
+			</div>
+			<div class="col-4"> 
+				<p class="userInfoInput"> First name </p>
+				<br>
+				<p class="userInfoInput"> Last name </p>
+				<br>
+			    <p class="userInfoInput"> Description </p>
+			</div>
+			<div class="col-2">
+			    <h6 class="userInfolabel"> Username </h6>
+			    <br>
+			    <h6 class="userInfolabel"> Email </h6>
+			</div>
+			<div class="col-4">
+				<p class="userInfoInput"> Username </p>
+				<br>
+			    <p class="userInfoInput"> Email </p>
+			  </div>
+
+		<h1 class="col-12 pt-4"> Previous Listings </h1>
+
+		<button class="btn addProductBtn" id="addProjectBtn" data-toggle="modal" data-target=".add-product-modal"> Add Product </button>
+
+
+		<!-- Add Product Modal --> 
+
+	<div class="modal fade bd-example-modal-lg add-product-modal" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" aria-hidden="true">
+		  <div class="modal-dialog modal-lg">
+		  	<div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body userInfoModalBody">
+		        <h1> Add new product </h1>
+
+
+		        <!-- Add product form -->
+
+		        <form id="addProductForm">
+				  <div class="row">
+				    <div class="col-4">
+				      <label class="userInfoLabel" for="addProductFormName">Name</label>
+				    </div>
+				    <div class="col-8">
+				    <small id="required" class="form-text text-muted">*Required</small>
+				      <input type="text" id="addProductFormName" name="addProductFormName" class="form-control" placeholder="Product Name">
+				    </div>
+				  </div>
+				  <div class="row">
+				    <div class="col-4">
+				      <label class="userInfoLabel" for="addProductFormDescription">Description</label>
+				    </div>
+				    <div class="col-8">
+				      <small id="required" class="form-text text-muted">*Required</small>
+				      <textarea class="form-control" id="addProductFormDescription" name="addProductFormDescription" rows="3" placeholder="Description"></textarea>
+				    </div>
+				  </div>
+				  <div class="row">
+				    <div class="col-4">
+				      <label class="userInfoLabel" for="addProductFormType">Type</label>
+				    </div>
+				    <div class="col-8">
+				    	<small id="required" class="form-text text-muted">*Required</small>
+				      <select class="form-control" id="addProductFormType" name="addProductFormType">
+						  <option value="Monstera">Monstera</option>
+						  <option value="Pothos">Pothos</option>
+						  <option value="Philodendron">Philodendron</option>
+						  <option value="Peperomia">Peperomia</option>
+						</select>
+				    </div>
+				  </div>
+				  <div class="row">
+				    <div class="col-4">
+				      <label class="userInfoLabel" for="addProductFormImg1">Image 1</label>
+				    </div>
+				    <div class="col-8">
+				    	<small id="required" class="form-text text-muted">*Required</small>
+				      <input type="text" id="addProductFormImg1" name="addProductFormImg1" class="form-control" placeholder="Image Link">
+				    </div>
+				  </div>
+				  <div class="row">
+				    <div class="col-4">
+				      <label class="userInfoLabel" for="addProductFormImg2">Image 2</label>
+				    </div>
+				    <div class="col-8">
+				      <input type="text" id="addProductFormImg2" name="addProductFormImg2" class="form-control" placeholder="Image Link">
+				    </div>
+				  </div>
+				  <div class="row">
+				    <div class="col-4">
+				      <label class="userInfoLabel" for="addProductFormImg3">Image 3</label>
+				    </div>
+				    <div class="col-8">
+				      <input type="text" id="addProductFormImg3" name="addProductFormImg3" class="form-control" placeholder="Image Link">
+				    </div>
+				  </div>
+				  <div class="row">
+				    <div class="col-4">
+				      <label class="userInfoLabel" for="addProductFormPrice">Image 3</label>
+				    </div>
+				    <div class="col-8">
+				    	<small id="required" class="form-text text-muted">*Required</small>
+				      <input type="text" id="addProductFormPrice" name="addProductFormPrice" class="form-control" placeholder="$0.00">
+				    </div>
+				  </div>
+				</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button id="addProduct" name="productButton" type="submit" class="btn cardBtn" data-dismiss="modal">Add Product</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+
+
+		<div id="userProducts"></div>
+
+		<div id="userInfoResults" class="userInfoContainer row">
+			<h1 class="col-12"> Previous Listings </h1>
+
+
+		</div>
+
+		<!-- End of info display -->
+
+	</div>
+
+	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+	</body>
+
+</html>
